@@ -26,6 +26,10 @@ What can you do right now:
     - 'X' - fire the main gun (if it's not working try to reload first)
 
 
+You can download build version of the game here:
+https://1drv.ms/f/c/b4fdb2ad2a628e12/IgAJYZFFjTsuTbxYk17Ilqh8AYAd-kRzarzpAySzuvm8qCk?e=1tv8l6
+
+
 The game is using Whisper application as part of its algorithm for STT recognition.
 The game is using Terrain Textures Pack Free by ALP.
 The game is using FMOD.
