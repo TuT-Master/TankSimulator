@@ -65,6 +65,7 @@ public class Gunner : MonoBehaviour
     private Coroutine yRoutine;
     private Coroutine xRoutine;
     private Turret turret;
+    private GunnerVoiceManager voiceManager;
     private float currentElevation = 0f;
     private float currentAzimuth = 0f;
     public Vector3 target;
@@ -79,16 +80,18 @@ public class Gunner : MonoBehaviour
     [SerializeField] private bool invertPitch = false; // flip if needed
     [SerializeField] private bool invertYaw = false;   // optional
 
-
+    [SerializeField] private float localAzimuthAngle = 0f;
+    [SerializeField] private float range = 1000f;
 
     // ----- ON START -----
     private void Start()
     {
         turret = turretAnimator.GetComponent<Turret>();
         turret.turretState = Turret.TurretState.StabEin;
+        voiceManager = GetComponent<GunnerVoiceManager>();
 
         // Prepare sounds
-        if(!canonFire_Event.isValid())
+        if (!canonFire_Event.isValid())
             canonFire_Event = RuntimeManager.CreateInstance(canonFire_sound);
 
         // Prepare projectile muzzle velocity dictionary
@@ -149,8 +152,8 @@ public class Gunner : MonoBehaviour
         // =========================================================
         // YAW (axis-based, incline-safe)
         // =========================================================
-        Vector3 yawAxis = turretPivot.up;           // green axis (usually correct for turret yaw)
-        Vector3 turretForward = turretPivot.forward; // blue axis
+        Vector3 yawAxis = turretPivot.up;
+        Vector3 turretForward = turretPivot.forward;
 
         Vector3 turretFwdOnPlane = Vector3.ProjectOnPlane(turretForward, yawAxis);
         Vector3 targetOnPlaneYaw = Vector3.ProjectOnPlane(toTargetFromTurret, yawAxis);
@@ -183,7 +186,7 @@ public class Gunner : MonoBehaviour
         Vector3 pitchAxis = gunPivot.right;
 
         // Reference forward for pitch: gun's forward (blue axis)
-        Vector3 gunForward = canonMuzzlePoint.forward;
+        Vector3 gunForward = -gunPivot.up;
 
         Vector3 gunFwdOnPlane = Vector3.ProjectOnPlane(gunForward, pitchAxis);
         Vector3 targetOnPlanePitch = Vector3.ProjectOnPlane(toTargetFromGun, pitchAxis);
@@ -220,27 +223,32 @@ public class Gunner : MonoBehaviour
     public void TraverseToDirection(Vector3 direction)
     {
         Vector3 localDir = turretPivot.parent.InverseTransformDirection(direction);
-        
+
         // Calculate target position
         if(Physics.Raycast(gunPivot.position, localDir, out RaycastHit hit, 5000f))
         {
             target = hit.point;
-        }
-        else
-        {
-            Debug.Log("No hit!");
         }
 
         float targetY = Mathf.Atan2(localDir.x, localDir.z) * Mathf.Rad2Deg;
         float targetX = Mathf.Asin(-localDir.y / localDir.magnitude) * Mathf.Rad2Deg;
         TraverseToAngle_X(targetY);
         TraverseToAngle_Y(targetX);
+
+        voiceManager.PlayOneShot(GunnerVoiceManager.OneShot.IDidNotUnderstand);
     }
     public void TraverseToPoint(Vector3 point)
     {
         target = point;
         Vector3 direction = point - gunPivot.position;
-        TraverseToDirection(direction);
+
+        Vector3 localDir = turretPivot.parent.InverseTransformDirection(direction);
+
+        float targetY = Mathf.Atan2(localDir.x, localDir.z) * Mathf.Rad2Deg;
+        float targetX = Mathf.Asin(-localDir.y / localDir.magnitude) * Mathf.Rad2Deg;
+        TraverseToAngle_X(targetY);
+        TraverseToAngle_Y(targetX);
+        StartCoroutine(voiceManager.PlayContactReport(GunnerVoiceManager.ContactType.Tank_Frontaly, localAzimuthAngle, range));
     }
     public void TraverseToAngle_Y(float? targetAngle = null)
     {

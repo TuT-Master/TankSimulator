@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3824760762285609984
+--- !u!114 &-8826789597013956606
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,9 +10,279 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Engine
+  m_Name: event:/Gunner/ContactReport/10 o'clock
   m_EditorClassIdentifier: 
-  Path: event:/Engine
+  Path: event:/Gunner/ContactReport/10 o'clock
+  Guid:
+    Data1: -257756666
+    Data2: 1221028201
+    Data3: -274341982
+    Data4: -1169334594
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-8791384900639005812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/400
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/400
+  Guid:
+    Data1: -306581602
+    Data2: 1150924691
+    Data3: 1428614272
+    Data4: 1401288683
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-8713165013494434553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/HitReport/Troops_Destroyed
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/HitReport/Troops_Destroyed
+  Guid:
+    Data1: -1502083183
+    Data2: 1271252373
+    Data3: 1718839471
+    Data4: -326864472
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-8240883050288387759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/2000
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/2000
+  Guid:
+    Data1: -823918210
+    Data2: 1298086334
+    Data3: -689140821
+    Data4: -1681391133
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-7175987313618529293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/100
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/100
+  Guid:
+    Data1: -1722177875
+    Data2: 1222646699
+    Data3: -1384690781
+    Data4: 763872440
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6501352076561031038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/Controls/ChangingToMainGun
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/Controls/ChangingToMainGun
+  Guid:
+    Data1: 1445508087
+    Data2: 1111052496
+    Data3: -1743449709
+    Data4: 1626844848
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6477138119015495906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/4 o'clock
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/4 o'clock
+  Guid:
+    Data1: 1475105729
+    Data2: 1144733738
+    Data3: 374923418
+    Data4: 197798949
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-5903534054736863108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/IFV_Side
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/IFV_Side
+  Guid:
+    Data1: -1011741123
+    Data2: 1308990897
+    Data3: 619645832
+    Data4: -658603732
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-5414958197151652574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/2 o'clock
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/2 o'clock
+  Guid:
+    Data1: 1738121516
+    Data2: 1329270338
+    Data3: 1881220272
+    Data4: -895210330
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-5209480626142401881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/5 o'clock
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/5 o'clock
+  Guid:
+    Data1: -827813795
+    Data2: 1214180851
+    Data3: 417684611
+    Data4: 346144689
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3724154744400885573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Tank/Engine
+  m_EditorClassIdentifier: 
+  Path: event:/Tank/Engine
   Guid:
     Data1: 837610455
     Data2: 1172950090
@@ -24,62 +294,12 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 7300338510134434019}
-  - {fileID: 3789313855090333483}
+  - {fileID: 8611639067320308491}
+  - {fileID: -1050529913874504092}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-868964472231216510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: ../Tank Simulator resources/Sounds/TankSimulator/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 639018669851436480
-  FileSizes:
-  - Name: Desktop
-    Value: 912
-  Exists: 1
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
-  m_Name: FMODStudioCache
-  m_EditorClassIdentifier: 
-  EditorBanks:
-  - {fileID: -868964472231216510}
-  - {fileID: 6528396404231502757}
-  EditorEvents:
-  - {fileID: -3824760762285609984}
-  - {fileID: 489404389657124018}
-  EditorParameters: []
-  MasterBanks:
-  - {fileID: 6528396404231502757}
-  StringsBanks:
-  - {fileID: -868964472231216510}
-  cacheVersion: 131856
-  cacheTime: 639018669851436480
-  SerializableEventsDict:
-  - key: event:/Engine
-    index: 0
-  - key: event:/CanonFire
-    index: 1
---- !u!114 &489404389657124018
+--- !u!114 &-3500564266548041731
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,24 +309,213 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/CanonFire
+  m_Name: event:/Gunner/ContactReport/Range
   m_EditorClassIdentifier: 
-  Path: event:/CanonFire
+  Path: event:/Gunner/ContactReport/Range
   Guid:
-    Data1: -1439003258
-    Data2: 1339787328
-    Data3: 1900452263
-    Data4: 1588365853
+    Data1: -1944801546
+    Data2: 1231043923
+    Data3: -1474112124
+    Data4: 353074954
   Banks:
   - {fileID: 6528396404231502757}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &3789313855090333483
+--- !u!114 &-3201035356113157206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/11 o'clock
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/11 o'clock
+  Guid:
+    Data1: 1360422641
+    Data2: 1079956921
+    Data3: -323154288
+    Data4: -365624111
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3024788031410586169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/Controls/ChangingToMachinegun
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/Controls/ChangingToMachinegun
+  Guid:
+    Data1: 214714080
+    Data2: 1104111959
+    Data3: 41128630
+    Data4: -23820721
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2848721082818648641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/Meters
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/Meters
+  Guid:
+    Data1: 464934109
+    Data2: 1265074115
+    Data3: -701973842
+    Data4: 615919694
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2688604437968765174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/Responses/IDidNotUnderstand
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/Responses/IDidNotUnderstand
+  Guid:
+    Data1: -2134884567
+    Data2: 1331630852
+    Data3: -1733871449
+    Data4: 1717501528
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2193627964577049506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/1000
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/1000
+  Guid:
+    Data1: -1256822289
+    Data2: 1153689209
+    Data3: -210115920
+    Data4: 1852011291
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1247034819422567222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/Responses/Roger
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/Responses/Roger
+  Guid:
+    Data1: -386769435
+    Data2: 1160089300
+    Data3: -51686230
+    Data4: 2058959541
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1200472844893437187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/700
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/700
+  Guid:
+    Data1: -413854078
+    Data2: 1314261329
+    Data3: -1929520229
+    Data4: -1966521646
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1050529913874504092
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,6 +539,725 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-868964472231216510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: ../Tank Simulator resources/Sounds/TankSimulator/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 639033232202966292
+  FileSizes:
+  - Name: Desktop
+    Value: 2894
+  Exists: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: -868964472231216510}
+  - {fileID: 6528396404231502757}
+  EditorEvents:
+  - {fileID: -8826789597013956606}
+  - {fileID: 985868612720017644}
+  - {fileID: 5473914902771031405}
+  - {fileID: 5529452400396348550}
+  - {fileID: 3791146039060686308}
+  - {fileID: -2688604437968765174}
+  - {fileID: -5414958197151652574}
+  - {fileID: -5903534054736863108}
+  - {fileID: 1758827199752409936}
+  - {fileID: 4839057890420616487}
+  - {fileID: 2038528881746702553}
+  - {fileID: -5209480626142401881}
+  - {fileID: 2073342381769654596}
+  - {fileID: 9187949095849377475}
+  - {fileID: 845594604962193085}
+  - {fileID: 6860709339014596271}
+  - {fileID: -8240883050288387759}
+  - {fileID: -1200472844893437187}
+  - {fileID: 4324286974578682255}
+  - {fileID: 6423428755040669701}
+  - {fileID: 8003757097409496436}
+  - {fileID: -8713165013494434553}
+  - {fileID: 3978212157830481545}
+  - {fileID: -8791384900639005812}
+  - {fileID: 6553917019361597129}
+  - {fileID: 3572888474689373022}
+  - {fileID: 6517882988736885705}
+  - {fileID: -7175987313618529293}
+  - {fileID: 2485701169329916853}
+  - {fileID: -6477138119015495906}
+  - {fileID: 2759806471196363841}
+  - {fileID: 9149102614029187195}
+  - {fileID: 700599061062186036}
+  - {fileID: 7054326307737105586}
+  - {fileID: -3724154744400885573}
+  - {fileID: -2848721082818648641}
+  - {fileID: -3024788031410586169}
+  - {fileID: 6492322908780908871}
+  - {fileID: -1247034819422567222}
+  - {fileID: -2193627964577049506}
+  - {fileID: -3201035356113157206}
+  - {fileID: 4042677777719376841}
+  - {fileID: 4455546930814756575}
+  - {fileID: -3500564266548041731}
+  - {fileID: -6501352076561031038}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: 6528396404231502757}
+  StringsBanks:
+  - {fileID: -868964472231216510}
+  cacheVersion: 131856
+  cacheTime: 639033232202966292
+  SerializableEventsDict:
+  - key: event:/Gunner/ContactReport/10 o'clock
+    index: 0
+  - key: event:/Gunner/ContactReport/300
+    index: 1
+  - key: event:/Gunner/ContactReport/8 o'clock
+    index: 2
+  - key: event:/Gunner/ContactReport/500
+    index: 3
+  - key: event:/Gunner/ContactReport/9 o'clock
+    index: 4
+  - key: event:/Gunner/Responses/IDidNotUnderstand
+    index: 5
+  - key: event:/Gunner/ContactReport/2 o'clock
+    index: 6
+  - key: event:/Gunner/ContactReport/IFV_Side
+    index: 7
+  - key: event:/Gunner/ContactReport/Tank_Side
+    index: 8
+  - key: event:/Gunner/HitReport/Tank_Destroyed
+    index: 9
+  - key: event:/Gunner/Controls/TurmAus
+    index: 10
+  - key: event:/Gunner/ContactReport/5 o'clock
+    index: 11
+  - key: event:/Gunner/HitReport/IFV_Destroyed
+    index: 12
+  - key: event:/Gunner/ContactReport/200
+    index: 13
+  - key: event:/Gunner/ContactReport/IFV_Frontaly
+    index: 14
+  - key: event:/Gunner/ContactReport/800
+    index: 15
+  - key: event:/Gunner/ContactReport/2000
+    index: 16
+  - key: event:/Gunner/ContactReport/700
+    index: 17
+  - key: event:/Gunner/Controls/Beobachten
+    index: 18
+  - key: event:/Tank/CanonFire
+    index: 19
+  - key: event:/Gunner/ContactReport/Troops
+    index: 20
+  - key: event:/Gunner/HitReport/Troops_Destroyed
+    index: 21
+  - key: event:/Gunner/ContactReport/3 o'clock
+    index: 22
+  - key: event:/Gunner/ContactReport/400
+    index: 23
+  - key: event:/Gunner/ContactReport/50
+    index: 24
+  - key: event:/Gunner/ContactReport/12 o'clock
+    index: 25
+  - key: event:/Gunner/ContactReport/Contact
+    index: 26
+  - key: event:/Gunner/ContactReport/100
+    index: 27
+  - key: event:/Gunner/ContactReport/1 o'clock
+    index: 28
+  - key: event:/Gunner/ContactReport/4 o'clock
+    index: 29
+  - key: event:/Gunner/Controls/StabEin
+    index: 30
+  - key: event:/Gunner/ContactReport/900
+    index: 31
+  - key: event:/Gunner/ContactReport/600
+    index: 32
+  - key: event:/Gunner/HitReport/Firing
+    index: 33
+  - key: event:/Tank/Engine
+    index: 34
+  - key: event:/Gunner/ContactReport/Meters
+    index: 35
+  - key: event:/Gunner/Controls/ChangingToMachinegun
+    index: 36
+  - key: event:/Gunner/ContactReport/Tank_Frontaly
+    index: 37
+  - key: event:/Gunner/Responses/Roger
+    index: 38
+  - key: event:/Gunner/ContactReport/1000
+    index: 39
+  - key: event:/Gunner/ContactReport/11 o'clock
+    index: 40
+  - key: event:/Gunner/ContactReport/7 o'clock
+    index: 41
+  - key: event:/Gunner/ContactReport/6 o'clock
+    index: 42
+  - key: event:/Gunner/ContactReport/Range
+    index: 43
+  - key: event:/Gunner/Controls/ChangingToMainGun
+    index: 44
+--- !u!114 &700599061062186036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/600
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/600
+  Guid:
+    Data1: 1375841234
+    Data2: 1309141810
+    Data3: 1115824560
+    Data4: 981299075
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &845594604962193085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/IFV_Frontaly
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/IFV_Frontaly
+  Guid:
+    Data1: -1088813705
+    Data2: 1220934251
+    Data3: 356611773
+    Data4: -1532988065
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &985868612720017644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/300
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/300
+  Guid:
+    Data1: -1356760564
+    Data2: 1292335018
+    Data3: 324103552
+    Data4: -1826180793
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &1758827199752409936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/Tank_Side
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/Tank_Side
+  Guid:
+    Data1: -933825983
+    Data2: 1257161602
+    Data3: 1420164251
+    Data4: -1093250511
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2038528881746702553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/Controls/TurmAus
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/Controls/TurmAus
+  Guid:
+    Data1: 1460498268
+    Data2: 1196019186
+    Data3: -11453296
+    Data4: -373739246
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2073342381769654596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/HitReport/IFV_Destroyed
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/HitReport/IFV_Destroyed
+  Guid:
+    Data1: -342970786
+    Data2: 1250571364
+    Data3: 1150881412
+    Data4: -1535414764
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2485701169329916853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/1 o'clock
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/1 o'clock
+  Guid:
+    Data1: 1018839743
+    Data2: 1185366699
+    Data3: -408156006
+    Data4: -407049749
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2759806471196363841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/Controls/StabEin
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/Controls/StabEin
+  Guid:
+    Data1: 566860227
+    Data2: 1105720718
+    Data3: -1573718909
+    Data4: -975594667
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3572888474689373022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/12 o'clock
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/12 o'clock
+  Guid:
+    Data1: -46137181
+    Data2: 1137804907
+    Data3: -1115967351
+    Data4: -1952983451
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3791146039060686308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/9 o'clock
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/9 o'clock
+  Guid:
+    Data1: 2062805785
+    Data2: 1182623695
+    Data3: 948396970
+    Data4: -952297309
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3978212157830481545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/3 o'clock
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/3 o'clock
+  Guid:
+    Data1: 468081309
+    Data2: 1178838812
+    Data3: -697858900
+    Data4: -1222855983
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4042677777719376841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/7 o'clock
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/7 o'clock
+  Guid:
+    Data1: -647700751
+    Data2: 1276418771
+    Data3: 1662033310
+    Data4: -1943610088
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4324286974578682255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/Controls/Beobachten
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/Controls/Beobachten
+  Guid:
+    Data1: 1322837893
+    Data2: 1250328261
+    Data3: -431669828
+    Data4: 1581214719
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4455546930814756575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/6 o'clock
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/6 o'clock
+  Guid:
+    Data1: -1077215759
+    Data2: 1207546048
+    Data3: -2091687510
+    Data4: 2105635817
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4839057890420616487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/HitReport/Tank_Destroyed
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/HitReport/Tank_Destroyed
+  Guid:
+    Data1: 1220836947
+    Data2: 1170973088
+    Data3: -398877253
+    Data4: 1824335563
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5473914902771031405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/8 o'clock
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/8 o'clock
+  Guid:
+    Data1: -1658450414
+    Data2: 1249288271
+    Data3: -2042608713
+    Data4: 443559005
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5529452400396348550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/500
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/500
+  Guid:
+    Data1: -911895273
+    Data2: 1212246789
+    Data3: 1632273338
+    Data4: -83350335
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &6423428755040669701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Tank/CanonFire
+  m_EditorClassIdentifier: 
+  Path: event:/Tank/CanonFire
+  Guid:
+    Data1: -1439003258
+    Data2: 1339787328
+    Data3: 1900452263
+    Data4: 1588365853
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &6492322908780908871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/Tank_Frontaly
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/Tank_Frontaly
+  Guid:
+    Data1: 1437439458
+    Data2: 1176064644
+    Data3: -2123378270
+    Data4: -1933902858
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &6517882988736885705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/Contact
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/Contact
+  Guid:
+    Data1: -92697179
+    Data2: 1222587459
+    Data3: 1178347906
+    Data4: 131250585
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &6528396404231502757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,12 +1273,120 @@ MonoBehaviour:
   Path: ../Tank Simulator resources/Sounds/TankSimulator/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639018669851426487
+  lastModified: 639033232202946283
   FileSizes:
   - Name: Desktop
-    Value: 372608
+    Value: 863744
   Exists: 1
---- !u!114 &7300338510134434019
+--- !u!114 &6553917019361597129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/50
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/50
+  Guid:
+    Data1: 1999846049
+    Data2: 1080135014
+    Data3: 1994696383
+    Data4: 1235356388
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &6860709339014596271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/800
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/800
+  Guid:
+    Data1: -1211536262
+    Data2: 1193238149
+    Data3: 450736574
+    Data4: -1141885908
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7054326307737105586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/HitReport/Firing
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/HitReport/Firing
+  Guid:
+    Data1: 948304598
+    Data2: 1087842546
+    Data3: 1921997972
+    Data4: 77678592
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &8003757097409496436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/Troops
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/Troops
+  Guid:
+    Data1: 105085323
+    Data2: 1136553740
+    Data3: 2136386695
+    Data4: 1551767443
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &8611639067320308491
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,3 +1410,57 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &9149102614029187195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/900
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/900
+  Guid:
+    Data1: 2067073739
+    Data2: 1329795647
+    Data3: -1250415481
+    Data4: -702255837
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &9187949095849377475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gunner/ContactReport/200
+  m_EditorClassIdentifier: 
+  Path: event:/Gunner/ContactReport/200
+  Guid:
+    Data1: 1873021793
+    Data2: 1311141926
+    Data3: -1593469779
+    Data4: -1022843279
+  Banks:
+  - {fileID: 6528396404231502757}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0

@@ -687,6 +687,325 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1043971946}
   m_CullTransparentMesh: 1
+--- !u!1 &1067211010 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3236213366166277453, guid: 51c5bbcb3bca3224488264545d82cc96,
+    type: 3}
+  m_PrefabInstance: {fileID: 2690060723495937950}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1067211013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067211010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4742bc60383dff04ea04186ad42135b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contact:
+    Guid:
+      Data1: -92697179
+      Data2: 1222587459
+      Data3: 1178347906
+      Data4: 131250585
+    Path: event:/Gunner/ContactReport/Contact
+  ifv_frontaly:
+    Guid:
+      Data1: -1088813705
+      Data2: 1220934251
+      Data3: 356611773
+      Data4: -1532988065
+    Path: event:/Gunner/ContactReport/IFV_Frontaly
+  ifv_side:
+    Guid:
+      Data1: -1011741123
+      Data2: 1308990897
+      Data3: 619645832
+      Data4: -658603732
+    Path: event:/Gunner/ContactReport/IFV_Side
+  tank_frontaly:
+    Guid:
+      Data1: 1437439458
+      Data2: 1176064644
+      Data3: -2123378270
+      Data4: -1933902858
+    Path: event:/Gunner/ContactReport/Tank_Frontaly
+  tank_side:
+    Guid:
+      Data1: -933825983
+      Data2: 1257161602
+      Data3: 1420164251
+      Data4: -1093250511
+    Path: event:/Gunner/ContactReport/Tank_Side
+  troops:
+    Guid:
+      Data1: 105085323
+      Data2: 1136553740
+      Data3: 2136386695
+      Data4: 1551767443
+    Path: event:/Gunner/ContactReport/Troops
+  oneOClock:
+    Guid:
+      Data1: 1018839743
+      Data2: 1185366699
+      Data3: -408156006
+      Data4: -407049749
+    Path: event:/Gunner/ContactReport/1 o'clock
+  twoOClock:
+    Guid:
+      Data1: 1738121516
+      Data2: 1329270338
+      Data3: 1881220272
+      Data4: -895210330
+    Path: event:/Gunner/ContactReport/2 o'clock
+  threeOClock:
+    Guid:
+      Data1: 468081309
+      Data2: 1178838812
+      Data3: -697858900
+      Data4: -1222855983
+    Path: event:/Gunner/ContactReport/3 o'clock
+  fourOClock:
+    Guid:
+      Data1: 1475105729
+      Data2: 1144733738
+      Data3: 374923418
+      Data4: 197798949
+    Path: event:/Gunner/ContactReport/4 o'clock
+  fiveOClock:
+    Guid:
+      Data1: -827813795
+      Data2: 1214180851
+      Data3: 417684611
+      Data4: 346144689
+    Path: event:/Gunner/ContactReport/5 o'clock
+  sixOClock:
+    Guid:
+      Data1: -1077215759
+      Data2: 1207546048
+      Data3: -2091687510
+      Data4: 2105635817
+    Path: event:/Gunner/ContactReport/6 o'clock
+  sevenOClock:
+    Guid:
+      Data1: -647700751
+      Data2: 1276418771
+      Data3: 1662033310
+      Data4: -1943610088
+    Path: event:/Gunner/ContactReport/7 o'clock
+  eightOClock:
+    Guid:
+      Data1: -1658450414
+      Data2: 1249288271
+      Data3: -2042608713
+      Data4: 443559005
+    Path: event:/Gunner/ContactReport/8 o'clock
+  nineOClock:
+    Guid:
+      Data1: 2062805785
+      Data2: 1182623695
+      Data3: 948396970
+      Data4: -952297309
+    Path: event:/Gunner/ContactReport/9 o'clock
+  tenOClock:
+    Guid:
+      Data1: -257756666
+      Data2: 1221028201
+      Data3: -274341982
+      Data4: -1169334594
+    Path: event:/Gunner/ContactReport/10 o'clock
+  elevenOClock:
+    Guid:
+      Data1: 1360422641
+      Data2: 1079956921
+      Data3: -323154288
+      Data4: -365624111
+    Path: event:/Gunner/ContactReport/11 o'clock
+  twelveOClock:
+    Guid:
+      Data1: -46137181
+      Data2: 1137804907
+      Data3: -1115967351
+      Data4: -1952983451
+    Path: event:/Gunner/ContactReport/12 o'clock
+  range:
+    Guid:
+      Data1: -1944801546
+      Data2: 1231043923
+      Data3: -1474112124
+      Data4: 353074954
+    Path: event:/Gunner/ContactReport/Range
+  r50:
+    Guid:
+      Data1: 1999846049
+      Data2: 1080135014
+      Data3: 1994696383
+      Data4: 1235356388
+    Path: event:/Gunner/ContactReport/50
+  r100:
+    Guid:
+      Data1: -1722177875
+      Data2: 1222646699
+      Data3: -1384690781
+      Data4: 763872440
+    Path: event:/Gunner/ContactReport/100
+  r200:
+    Guid:
+      Data1: 1873021793
+      Data2: 1311141926
+      Data3: -1593469779
+      Data4: -1022843279
+    Path: event:/Gunner/ContactReport/200
+  r300:
+    Guid:
+      Data1: -1356760564
+      Data2: 1292335018
+      Data3: 324103552
+      Data4: -1826180793
+    Path: event:/Gunner/ContactReport/300
+  r400:
+    Guid:
+      Data1: -306581602
+      Data2: 1150924691
+      Data3: 1428614272
+      Data4: 1401288683
+    Path: event:/Gunner/ContactReport/400
+  r500:
+    Guid:
+      Data1: -911895273
+      Data2: 1212246789
+      Data3: 1632273338
+      Data4: -83350335
+    Path: event:/Gunner/ContactReport/500
+  r600:
+    Guid:
+      Data1: 1375841234
+      Data2: 1309141810
+      Data3: 1115824560
+      Data4: 981299075
+    Path: event:/Gunner/ContactReport/600
+  r700:
+    Guid:
+      Data1: -413854078
+      Data2: 1314261329
+      Data3: -1929520229
+      Data4: -1966521646
+    Path: event:/Gunner/ContactReport/700
+  r800:
+    Guid:
+      Data1: -1211536262
+      Data2: 1193238149
+      Data3: 450736574
+      Data4: -1141885908
+    Path: event:/Gunner/ContactReport/800
+  r900:
+    Guid:
+      Data1: 2067073739
+      Data2: 1329795647
+      Data3: -1250415481
+      Data4: -702255837
+    Path: event:/Gunner/ContactReport/900
+  r1000:
+    Guid:
+      Data1: -1256822289
+      Data2: 1153689209
+      Data3: -210115920
+      Data4: 1852011291
+    Path: event:/Gunner/ContactReport/1000
+  r2000:
+    Guid:
+      Data1: -823918210
+      Data2: 1298086334
+      Data3: -689140821
+      Data4: -1681391133
+    Path: event:/Gunner/ContactReport/2000
+  meters:
+    Guid:
+      Data1: 464934109
+      Data2: 1265074115
+      Data3: -701973842
+      Data4: 615919694
+    Path: event:/Gunner/ContactReport/Meters
+  tankDestroyed:
+    Guid:
+      Data1: 1220836947
+      Data2: 1170973088
+      Data3: -398877253
+      Data4: 1824335563
+    Path: event:/Gunner/HitReport/Tank_Destroyed
+  ifvDestroyed:
+    Guid:
+      Data1: -342970786
+      Data2: 1250571364
+      Data3: 1150881412
+      Data4: -1535414764
+    Path: event:/Gunner/HitReport/IFV_Destroyed
+  troopsDestroyed:
+    Guid:
+      Data1: -1502083183
+      Data2: 1271252373
+      Data3: 1718839471
+      Data4: -326864472
+    Path: event:/Gunner/HitReport/Troops_Destroyed
+  firing:
+    Guid:
+      Data1: 948304598
+      Data2: 1087842546
+      Data3: 1921997972
+      Data4: 77678592
+    Path: event:/Gunner/HitReport/Firing
+  changingToMainGun:
+    Guid:
+      Data1: 1445508087
+      Data2: 1111052496
+      Data3: -1743449709
+      Data4: 1626844848
+    Path: event:/Gunner/Controls/ChangingToMainGun
+  changingToMachinegun:
+    Guid:
+      Data1: 214714080
+      Data2: 1104111959
+      Data3: 41128630
+      Data4: -23820721
+    Path: event:/Gunner/Controls/ChangingToMachinegun
+  turmAus:
+    Guid:
+      Data1: 1460498268
+      Data2: 1196019186
+      Data3: -11453296
+      Data4: -373739246
+    Path: event:/Gunner/Controls/TurmAus
+  beobachten:
+    Guid:
+      Data1: 1322837893
+      Data2: 1250328261
+      Data3: -431669828
+      Data4: 1581214719
+    Path: event:/Gunner/Controls/Beobachten
+  stabEin:
+    Guid:
+      Data1: 566860227
+      Data2: 1105720718
+      Data3: -1573718909
+      Data4: -975594667
+    Path: event:/Gunner/Controls/StabEin
+  roger:
+    Guid:
+      Data1: -386769435
+      Data2: 1160089300
+      Data3: -51686230
+      Data4: 2058959541
+    Path: event:/Gunner/Responses/Roger
+  iDidNotUnderstand:
+    Guid:
+      Data1: -2134884567
+      Data2: 1331630852
+      Data3: -1733871449
+      Data4: 1717501528
+    Path: event:/Gunner/Responses/IDidNotUnderstand
 --- !u!1 &1140346455
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,7 +1721,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3236213366166277453, guid: 51c5bbcb3bca3224488264545d82cc96,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1067211013}
   m_SourcePrefab: {fileID: 100100000, guid: 51c5bbcb3bca3224488264545d82cc96, type: 3}
 --- !u!1 &2897916629209968928
 GameObject:
