@@ -43,7 +43,6 @@ public class Commander : MonoBehaviour
     [SerializeField] private RectTransform commanderPeriscope_strichbild;
     [SerializeField] private float commanderPeriscope_ElevationMin = -20f;
     [SerializeField] private float commanderPeriscope_ElevationMax = 60f;
-    private readonly float commanderPeriscope_maxSpeed = 40f;
     private float commanderPeriscope_CurrentElevationSpeed = 0f;
     private float commanderPeriscope_CurrentRotationSpeed = 0f;
     public bool commanderPeriscope_Active = false;
@@ -57,6 +56,9 @@ public class Commander : MonoBehaviour
     private ZoomLevel commanderPeriscope_currentZoomLevel = ZoomLevel.Low;
     [SerializeField] private Transform turretTransform;
     [SerializeField] private LayerMask periHitMask;
+    private bool commanderPeriscope_FastMode_Active = false;
+    private readonly float commanderPeriscope_maxSpeed = 20f;
+    private readonly float commanderPeriscope_maxSpeedInFastMode = 40f;
 
     // Zoom levels
     private enum ZoomLevel
@@ -131,18 +133,19 @@ public class Commander : MonoBehaviour
             float mouseX = Input.GetAxis("Mouse X");
             float mouseY = Input.GetAxis("Mouse Y");
 
-            commanderPeriscope_CurrentRotationSpeed += mouseX;
-            commanderPeriscope_CurrentElevationSpeed += mouseY;
+            float speedMultiplier = commanderPeriscope_FastMode_Active ? 2f : 1f;
+            commanderPeriscope_CurrentRotationSpeed += mouseX * speedMultiplier;
+            commanderPeriscope_CurrentElevationSpeed += mouseY * speedMultiplier;
 
             commanderPeriscope_CurrentRotationSpeed = Mathf.Clamp(
                 commanderPeriscope_CurrentRotationSpeed,
-                -commanderPeriscope_maxSpeed,
-                commanderPeriscope_maxSpeed);
+                commanderPeriscope_FastMode_Active ? -commanderPeriscope_maxSpeedInFastMode : -commanderPeriscope_maxSpeed,
+                commanderPeriscope_FastMode_Active ? commanderPeriscope_maxSpeedInFastMode : commanderPeriscope_maxSpeed);
 
             commanderPeriscope_CurrentElevationSpeed = Mathf.Clamp(
                 commanderPeriscope_CurrentElevationSpeed,
-                -commanderPeriscope_maxSpeed,
-                commanderPeriscope_maxSpeed);
+                commanderPeriscope_FastMode_Active ? -commanderPeriscope_maxSpeedInFastMode : -commanderPeriscope_maxSpeed,
+                commanderPeriscope_FastMode_Active ? commanderPeriscope_maxSpeedInFastMode : commanderPeriscope_maxSpeed);
         }
         else
         {
@@ -251,6 +254,10 @@ public class Commander : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.V))
         {
             gunner.TraverseToPoint(GetTargetPointFromPeri());
+        }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+            commanderPeriscope_FastMode_Active = !commanderPeriscope_FastMode_Active;
         }
     }
     public void StartInteractionCooldown()

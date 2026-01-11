@@ -6,14 +6,14 @@ using UnityEngine;
 
 public class Gunner : MonoBehaviour
 {
-    [Header("Gun handling (legacy max speeds)")]
-    [SerializeField] private float gunTraverseSpeed_X = 45f;     // used as max speed in AUTO
-    [SerializeField] private float gunTraverseSpeed_Y = 30f;     // used as max speed in AUTO
-    [SerializeField] private float gunTraverseSpeed_X_Manual = 3f;  // used as max speed in MANUAL
-    [SerializeField] private float gunTraverseSpeed_Y_Manual = 3f;  // used as max speed in MANUAL
-    public bool isManualTraversing = false;
+    [Header("Gun handling")]
+    [SerializeField] private float gunTraverseSpeed_X = 45f;
+    [SerializeField] private float gunTraverseSpeed_Y = 30f;
+    [SerializeField] private float gunTraverseSpeed_X_Manual = 3f;
+    [SerializeField] private float gunTraverseSpeed_Y_Manual = 3f;
     [SerializeField] private float stabYawSnapEps = 0.05f;    // deg
     [SerializeField] private float stabPitchSnapEps = 0.05f;  // deg
+    public bool isManualTraversing = false;
     private float yawZero;
     private bool yawZeroInit = false;
 
@@ -45,6 +45,13 @@ public class Gunner : MonoBehaviour
     [SerializeField] private float[] projectileMuzzleVelocities = new float[3];
     private Dictionary<Loader.AmmoType, float> projectileMuzzleVelocityDict;
 
+    [Header("Camera Settings")]
+    [SerializeField] private Camera gunner_mainCamera;
+    public bool thermalSight_Active = false;
+    public bool mainCamera_ZoomedIn = false;
+    private readonly float gunner_mainCamera_FOV_ZoomedOut = 15f;
+    private readonly float gunner_mainCamera_FOV_ZoomedIn = 5f;
+
     [Header("Effects")]
     [SerializeField] private Transform canonMuzzlePoint;
     [SerializeField] private GameObject canonFire_effect_prefab;
@@ -68,20 +75,27 @@ public class Gunner : MonoBehaviour
     private GunnerVoiceManager voiceManager;
     private float currentElevation = 0f;
     private float currentAzimuth = 0f;
-    public Vector3 target;
+    [HideInInspector] public Vector3 target;
 
     // FCS variables
-    private readonly float maxLaserRange = 99999f;
-    private readonly float minLaserRange = 200f;
     [HideInInspector] public readonly float maxFCSCalculationRange = 4000f;
     private readonly float minFCSCalculationRange = 200f;
-    private float rangeToTarget = 200f;
+    private readonly float maxLaserRange = 99999f;
+    private readonly float minLaserRange = 200f;
+    private float lastLaserRangedValue = 200f;
 
     [SerializeField] private bool invertPitch = false; // flip if needed
     [SerializeField] private bool invertYaw = false;   // optional
 
-    [SerializeField] private float localAzimuthAngle = 0f;
-    [SerializeField] private float range = 1000f;
+
+    
+    
+    // ----- TEST ONLY START -----
+
+    // ----- TEST ONLY END -----
+
+
+
 
     // ----- ON START -----
     private void Start()
@@ -230,11 +244,12 @@ public class Gunner : MonoBehaviour
             target = hit.point;
         }
 
-        float targetY = Mathf.Atan2(localDir.x, localDir.z) * Mathf.Rad2Deg;
-        float targetX = Mathf.Asin(-localDir.y / localDir.magnitude) * Mathf.Rad2Deg;
-        TraverseToAngle_X(targetY);
-        TraverseToAngle_Y(targetX);
+        float targetAzimuth = Mathf.Atan2(localDir.x, localDir.z) * Mathf.Rad2Deg;
+        float targetElevation = Mathf.Asin(-localDir.y / localDir.magnitude) * Mathf.Rad2Deg;
+        TraverseToAngle_X(targetAzimuth);
+        TraverseToAngle_Y(targetElevation);
 
+        // Test only
         voiceManager.PlayOneShot(GunnerVoiceManager.OneShot.IDidNotUnderstand);
     }
     public void TraverseToPoint(Vector3 point)
@@ -244,11 +259,14 @@ public class Gunner : MonoBehaviour
 
         Vector3 localDir = turretPivot.parent.InverseTransformDirection(direction);
 
-        float targetY = Mathf.Atan2(localDir.x, localDir.z) * Mathf.Rad2Deg;
-        float targetX = Mathf.Asin(-localDir.y / localDir.magnitude) * Mathf.Rad2Deg;
-        TraverseToAngle_X(targetY);
-        TraverseToAngle_Y(targetX);
-        StartCoroutine(voiceManager.PlayContactReport(GunnerVoiceManager.ContactType.Tank_Frontaly, localAzimuthAngle, range));
+        float targetAzimuth = Mathf.Atan2(localDir.x, localDir.z) * Mathf.Rad2Deg;
+        float targetElevation = Mathf.Asin(-localDir.y / localDir.magnitude) * Mathf.Rad2Deg;
+        TraverseToAngle_X(targetAzimuth);
+        TraverseToAngle_Y(targetElevation);
+
+        // Test only
+        lastLaserRangedValue = direction.magnitude;
+        StartCoroutine(voiceManager.PlayContactReport(GunnerVoiceManager.ContactType.Tank_Frontaly, targetAzimuth, lastLaserRangedValue));
     }
     public void TraverseToAngle_Y(float? targetAngle = null)
     {
