@@ -8,6 +8,8 @@ public abstract class Interactable : MonoBehaviour
     [SerializeField] private string prompt = "Interact";
     public string Prompt => prompt;
 
+    public abstract bool CanInteract();
+
     public abstract void Interact();
 
     public virtual void OnFocusEnter() { }

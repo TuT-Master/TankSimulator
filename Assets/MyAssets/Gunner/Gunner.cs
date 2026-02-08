@@ -3,6 +3,9 @@ using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
+using static Enemy;
+using static UnityEngine.GraphicsBuffer;
 
 public class Gunner : MonoBehaviour
 {
@@ -16,6 +19,8 @@ public class Gunner : MonoBehaviour
     public bool isManualTraversing = false;
     private float yawZero;
     private bool yawZeroInit = false;
+    private float currentElevation = 0f;
+    private float currentAzimuth = 0f;
 
     [Header("Accel/Decel")]
     [SerializeField] private float gunAccel_X = 120f;
@@ -67,33 +72,33 @@ public class Gunner : MonoBehaviour
     [SerializeField] private Transform turretPivot;   // local Y = azimuth
     [SerializeField] private Animator turretAnimator;
     [SerializeField] private Loader loader;
+    [HideInInspector] public Vector3 target;
+    [HideInInspector] public bool StabilizerActive = false;
+    private Enemy currentTarget;
+    private readonly float TIME_FOR_TARGET_TO_BE_ACTIVE = 15f;
+    private float timePassed = 0f;
+    public enum TargetFacingDirection
+    {
+        None,
+        Front,
+        Side,
+        Back,
+    }
+
+
+    // FCS variables
+    [HideInInspector] public readonly float maxFCSCalculationRange = 4000f;
+    private readonly float minFCSCalculationRange = 200f;
+    private readonly float maxLaserRange = 9999f;
+    private readonly float minLaserRange = 200f;
+    private float lastLaserRangedValue = 200f;
 
     // Private variables
     private Coroutine yRoutine;
     private Coroutine xRoutine;
     private Turret turret;
     private GunnerVoiceManager voiceManager;
-    private float currentElevation = 0f;
-    private float currentAzimuth = 0f;
-    [HideInInspector] public Vector3 target;
-
-    // FCS variables
-    [HideInInspector] public readonly float maxFCSCalculationRange = 4000f;
-    private readonly float minFCSCalculationRange = 200f;
-    private readonly float maxLaserRange = 99999f;
-    private readonly float minLaserRange = 200f;
-    private float lastLaserRangedValue = 200f;
-
-    [SerializeField] private bool invertPitch = false; // flip if needed
-    [SerializeField] private bool invertYaw = false;   // optional
-
-
-    
-    
-    // ----- TEST ONLY START -----
-
-    // ----- TEST ONLY END -----
-
+    public bool _CanShoot = true;
 
 
 
@@ -128,7 +133,7 @@ public class Gunner : MonoBehaviour
     // ----- ON UPDATE -----
     private void Update()
     {
-        // Cheack turret state
+        // Check turret state
         switch(turret.turretState)
         {
             case Turret.TurretState.TurmAus:
@@ -144,17 +149,68 @@ public class Gunner : MonoBehaviour
                 break;
         }
 
+        // Elevate gunner's main camera
+        UpdateCamera();
+
+        // Check what the gunner is looking at
+        if(StabilizerActive && !isTraversingToLoadingAngle)
+        {
+            Vector3 origin = gunner_mainCamera.transform.position;
+            Vector3 dir = gunner_mainCamera.transform.forward;
+            Ray ray = new(origin, dir);
+            if (Physics.Raycast(ray, out RaycastHit hit, 4000f))
+            {
+                if (hit.collider.TryGetComponent(out PartOfEnemy partOfEnemy) && currentTarget != partOfEnemy.enemy) // New target
+                {
+                    timePassed = 0f;
+                    // Assign new target
+                    Enemy enemy = partOfEnemy.enemy;
+                    currentTarget = enemy;
+                    lastLaserRangedValue = Vector3.Distance(transform.position, enemy.transform.position);
+                    // Target facing direction
+                    TargetFacingDirection targetDir = GetTargetFacingDirection(gunner_mainCamera.transform, enemy);
+                    StartCoroutine(voiceManager.PlayContactReport(targetDir, enemy.targetType, currentAzimuth, lastLaserRangedValue));
+                }
+                else if (hit.collider.TryGetComponent(out partOfEnemy) && currentTarget == partOfEnemy.enemy)
+                {
+                    timePassed = 0f;
+                }
+                else
+                {
+                    // Reset active target
+                    if (timePassed < TIME_FOR_TARGET_TO_BE_ACTIVE)
+                        timePassed += Time.deltaTime;
+                    else
+                    {
+                        currentTarget = null;
+                    }
+                }
+            }
+        }
+
         // Test input
         if (Input.GetKeyDown(KeyCode.X))
         {
-            Fire_MainCannon();
+            StartCoroutine(Fire_MainCannon());
         }
+    }
+
+
+    // ----- MAIN CAMERA MOVEMENT -----
+    private void UpdateCamera()
+    {
+        Vector3 currentDir = gunner_mainCamera.transform.localEulerAngles;
+        Vector3 finDir = new(currentElevation, currentDir.y, currentDir.z);
+        gunner_mainCamera.transform.localEulerAngles = finDir;
     }
 
 
     // ----- GUN STABILIZATOR -----
     private void StabilizeGun()
     {
+        if (!StabilizerActive) return;
+
+
         // Sync "current" angles to the real transform every frame (great for debugging stability)
         currentAzimuth = NormalizeAngle(turretPivot.localEulerAngles.y);
         currentElevation = NormalizeAngle(gunPivot.localEulerAngles.x);
@@ -179,7 +235,6 @@ public class Gunner : MonoBehaviour
         targetOnPlaneYaw.Normalize();
 
         float yawError = Vector3.SignedAngle(turretFwdOnPlane, targetOnPlaneYaw, yawAxis);
-        if (invertYaw) yawError = -yawError;
 
         float desiredYaw = currentAzimuth + yawError;
 
@@ -212,7 +267,6 @@ public class Gunner : MonoBehaviour
         targetOnPlanePitch.Normalize();
 
         float pitchError = Vector3.SignedAngle(gunFwdOnPlane, targetOnPlanePitch, pitchAxis);
-        if (invertPitch) pitchError = -pitchError;
 
         float desiredPitch = currentElevation + pitchError;
 
@@ -255,6 +309,7 @@ public class Gunner : MonoBehaviour
     public void TraverseToPoint(Vector3 point)
     {
         target = point;
+        StabilizerActive = true;
         Vector3 direction = point - gunPivot.position;
 
         Vector3 localDir = turretPivot.parent.InverseTransformDirection(direction);
@@ -263,10 +318,20 @@ public class Gunner : MonoBehaviour
         float targetElevation = Mathf.Asin(-localDir.y / localDir.magnitude) * Mathf.Rad2Deg;
         TraverseToAngle_X(targetAzimuth);
         TraverseToAngle_Y(targetElevation);
+    }
+    // Traverse to target's pivot point (not as accurate)
+    public void TraverseToTarget(GameObject target)
+    {
+        this.target = target.transform.position;
+        StabilizerActive = true;
+        Vector3 direction = target.transform.position - gunPivot.position;
 
-        // Test only
-        lastLaserRangedValue = direction.magnitude;
-        StartCoroutine(voiceManager.PlayContactReport(GunnerVoiceManager.ContactType.Tank_Frontaly, targetAzimuth, lastLaserRangedValue));
+        Vector3 localDir = turretPivot.parent.InverseTransformDirection(direction);
+
+        float targetAzimuth = Mathf.Atan2(localDir.x, localDir.z) * Mathf.Rad2Deg;
+        float targetElevation = Mathf.Asin(-localDir.y / localDir.magnitude) * Mathf.Rad2Deg;
+        TraverseToAngle_X(targetAzimuth);
+        TraverseToAngle_Y(targetElevation);
     }
     public void TraverseToAngle_Y(float? targetAngle = null)
     {
@@ -432,45 +497,116 @@ public class Gunner : MonoBehaviour
     }
 
 
-    // ----- WEAPONS -----
-    private void Fire_MainCannon()
+    // ----- TARGET IDENTIFICATION -----
+    private TargetFacingDirection GetTargetFacingDirection(Transform me, Enemy enemy)
     {
-        // Spawn projectile
-        GameObject shot = null;
-        Quaternion rotation = Quaternion.Euler(gunPivot.rotation.eulerAngles.x, gunPivot.rotation.eulerAngles.y + 180f, gunPivot.rotation.eulerAngles.z);
-        switch (loader.currentAmmoTypeLoaded)
-        {
-            case Loader.AmmoType.KE:
-                shot = Instantiate(KE_shot_prefab, canonMuzzlePoint.position, rotation);
-                break;
-            case Loader.AmmoType.MZ:
-                shot = Instantiate(MZ_shot_prefab, canonMuzzlePoint.position, rotation);
-                break;
-            case Loader.AmmoType.HE:
-                shot = Instantiate(HE_shot_prefab, canonMuzzlePoint.position, rotation);
-                break;
-            default:
-                Debug.Log("Gunner: Cannot fire main cannon - no ammo loaded!");
-                return;
-        }
-        if (shot.TryGetComponent(out Rigidbody rb))
-        {
-            rb.AddForce(canonMuzzlePoint.forward * projectileMuzzleVelocityDict[loader.currentAmmoTypeLoaded], ForceMode.VelocityChange);
-        }
+        Vector3 toMe = me.position - enemy.transform.position;
+        toMe.y = 0f;
+        Vector3 forward = enemy.HullForward;
+        forward.y = 0f;
+        toMe.Normalize();
+        forward.Normalize();
+        float angle = Mathf.Abs(Vector3.Angle(forward, toMe));
+
+        if (angle < 45)
+            return TargetFacingDirection.Front;
+        else if (angle <= 135)
+            return TargetFacingDirection.Side;
         else
+            return TargetFacingDirection.Back;
+    }
+    public void SetResultOfFiring(TargetType contactType, bool hit, bool destroyed)
+    {
+        StartCoroutine(ResultOfFiringDelay(contactType, hit, destroyed));
+    }
+    private IEnumerator ResultOfFiringDelay(TargetType contactType, bool hit, bool destroyed)
+    {
+        yield return new WaitForSeconds(0.4f);
+        if (hit)
         {
-            Debug.Log("No Rigidbody on shot found!");
-            Destroy(shot);
+            if (destroyed)
+            {
+                if (contactType == TargetType.Tank)
+                    voiceManager.PlayOneShot(GunnerVoiceManager.OneShot.TankDestroyed);
+                else if (contactType == TargetType.IFV)
+                    voiceManager.PlayOneShot(GunnerVoiceManager.OneShot.IfvDestroyed);
+                else if (contactType == TargetType.Infantry)
+                    voiceManager.PlayOneShot(GunnerVoiceManager.OneShot.TroopsDestroyed);
+            }
         }
+    }
 
-        // Visual and sound effect
-        SpawnEffect(Effect.CanonFire);
 
-        // Reset current ammo type loaded
-        loader.currentAmmoTypeLoaded = Loader.AmmoType.None;
+    // ----- WEAPONS -----
+    private IEnumerator Fire_MainCannon()
+    {
+        // Check if fire is possible
+        if (loader.currentAmmoTypeLoaded != Loader.AmmoType.None && _CanShoot)
+        {
+            voiceManager.PlayOneShot(GunnerVoiceManager.OneShot.Firing);
+            if (loader.status == Loader.LoaderStatus.Idle || loader.status == Loader.LoaderStatus.Fire || loader.status == Loader.LoaderStatus.Sicher)
+            {
+                _CanShoot = false;
+                // If loader did not clicked FIRE -> click it NOW
+                if (loader.status != Loader.LoaderStatus.Fire)
+                {
+                    loader.loaderSpeedMultiplier = 2f;
+                    loader.ClickOnPanel(Loader.LoadersPanelAction.Fire);
+                    while (loader.status != Loader.LoaderStatus.Fire)
+                    {
+                        yield return null;
+                    }
+                    loader.loaderSpeedMultiplier = 1f;
+                }
+                else // Add some delay :))
+                {
+                    yield return new WaitForSeconds(1f);
+                }
 
-        // Play firing animation
-        if (turretAnimator) turretAnimator.SetTrigger("Fire");
+                // Spawn projectile
+                GameObject shot = null;
+                Quaternion rotation = Quaternion.Euler(gunPivot.rotation.eulerAngles.x, gunPivot.rotation.eulerAngles.y + 180f, gunPivot.rotation.eulerAngles.z);
+                
+                switch (loader.currentAmmoTypeLoaded)
+                {
+                    case Loader.AmmoType.KE:
+                        shot = Instantiate(KE_shot_prefab, canonMuzzlePoint.position, rotation);
+                        break;
+                    case Loader.AmmoType.MZ:
+                        shot = Instantiate(MZ_shot_prefab, canonMuzzlePoint.position, rotation);
+                        break;
+                    case Loader.AmmoType.HE:
+                        shot = Instantiate(HE_shot_prefab, canonMuzzlePoint.position, rotation);
+                        break;
+                }
+
+                if (shot.TryGetComponent(out Rigidbody rb))
+                {
+                    rb.AddForce(canonMuzzlePoint.forward * projectileMuzzleVelocityDict[loader.currentAmmoTypeLoaded], ForceMode.VelocityChange);
+
+                    // Assign Gunner variable for reverse confirmation of hit
+                    if (shot.TryGetComponent(out Projectile p))
+                        p.gunner = this;
+
+                    // Visual and sound effect
+                    SpawnEffect(Effect.CanonFire);
+
+                    // Reset current ammo type loaded
+                    loader.currentAmmoTypeLoaded = Loader.AmmoType.None;
+
+                    // Reload gun
+                    loader.ReloadMainGun();
+
+                    // Play firing animation
+                    if (turretAnimator) turretAnimator.SetTrigger("Fire");
+                }
+                else
+                {
+                    Debug.Log("No Rigidbody on projectile found!");
+                    Destroy(shot);
+                }
+            }
+        }
     }
 
 

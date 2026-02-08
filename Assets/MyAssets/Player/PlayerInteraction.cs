@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +19,8 @@ public class PlayerInteraction : MonoBehaviour
 
     [Header("Graphics")]
     [SerializeField] private Image cursor;
+    [SerializeField] private TextMeshProUGUI interactText;
+    [SerializeField] private float interactTextShowDuration = 1.5f;
     public bool showCursorWhenHolding = true;
 
     // Runtime state
@@ -30,7 +34,6 @@ public class PlayerInteraction : MonoBehaviour
 
 
 
-
     private void Update()
     {
         if (!canInteract)
@@ -40,7 +43,8 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         // 1) Find what we are looking at this frame
-        bool _ = TryGetInteractableObject(out Interactable lookedAt);
+        if (TryGetInteractableObject(out Interactable lookedAt) && lookedAt != currentTarget)
+            StartCoroutine(ShowInteractText(lookedAt.Prompt));
 
         // 2) If target changed, reset hold and notify focus changes
         if (lookedAt != currentTarget)
@@ -62,6 +66,10 @@ public class PlayerInteraction : MonoBehaviour
             ResetHold();
             return;
         }
+
+        // If target cannot interact -> return
+        if (!lookedAt.CanInteract())
+            return;
 
         // 4) Handle interaction input
         if (!requireHold)
@@ -95,6 +103,16 @@ public class PlayerInteraction : MonoBehaviour
             currentTarget.OnHoldProgress(0f);
             ResetHold(keepTarget: true);
         }
+    }
+    private IEnumerator ShowInteractText(string text)
+    {
+        interactText.enabled = true;
+        interactText.text = text;
+
+        yield return new WaitForSeconds(interactTextShowDuration);
+
+        interactText.enabled = false;
+        interactText.text = string.Empty;
     }
     private void ResetHold(bool keepTarget = false)
     {

@@ -92784,7 +92784,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.041666668
-    functionName: Ammo_KE_Visibility_On
+    functionName: Ammo_Visibility_On
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

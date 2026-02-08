@@ -1,61 +1,66 @@
+using FMOD.Studio;
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using FMOD.Studio;
-using FMODUnity;
+using static Enemy;
+using static Gunner;
 
 public class GunnerVoiceManager : MonoBehaviour
 {
-    [Header("Contact Report")]
-    [SerializeField] private EventReference contact;
-    [SerializeField] private EventReference ifv_frontaly;
-    [SerializeField] private EventReference ifv_side;
-    [SerializeField] private EventReference tank_frontaly;
-    [SerializeField] private EventReference tank_side;
-    [SerializeField] private EventReference troops;
-    [SerializeField] private EventReference oneOClock;
-    [SerializeField] private EventReference twoOClock;
-    [SerializeField] private EventReference threeOClock;
-    [SerializeField] private EventReference fourOClock;
-    [SerializeField] private EventReference fiveOClock;
-    [SerializeField] private EventReference sixOClock;
-    [SerializeField] private EventReference sevenOClock;
-    [SerializeField] private EventReference eightOClock;
-    [SerializeField] private EventReference nineOClock;
-    [SerializeField] private EventReference tenOClock;
-    [SerializeField] private EventReference elevenOClock;
-    [SerializeField] private EventReference twelveOClock;
-    [SerializeField] private EventReference range;
-    [SerializeField] private EventReference r50;
-    [SerializeField] private EventReference r100;
-    [SerializeField] private EventReference r200;
-    [SerializeField] private EventReference r300;
-    [SerializeField] private EventReference r400;
-    [SerializeField] private EventReference r500;
-    [SerializeField] private EventReference r600;
-    [SerializeField] private EventReference r700;
-    [SerializeField] private EventReference r800;
-    [SerializeField] private EventReference r900;
-    [SerializeField] private EventReference r1000;
-    [SerializeField] private EventReference r2000;
-    [SerializeField] private EventReference meters;
+    [Header("Voice Settings")]
+    [SerializeField] private GunnerVoiceSO voice;
 
-    [Header("Hit Report")]
-    [SerializeField] private EventReference tankDestroyed;
-    [SerializeField] private EventReference ifvDestroyed;
-    [SerializeField] private EventReference troopsDestroyed;
-    [SerializeField] private EventReference firing;
+    // Contact Report
+    private EventReference contact;
+    private EventReference ifv_frontaly;
+    private EventReference ifv_side;
+    private EventReference tank_frontaly;
+    private EventReference tank_side;
+    private EventReference troops;
+    private EventReference oneOClock;
+    private EventReference twoOClock;
+    private EventReference threeOClock;
+    private EventReference fourOClock;
+    private EventReference fiveOClock;
+    private EventReference sixOClock;
+    private EventReference sevenOClock;
+    private EventReference eightOClock;
+    private EventReference nineOClock;
+    private EventReference tenOClock;
+    private EventReference elevenOClock;
+    private EventReference twelveOClock;
+    private EventReference range;
+    private EventReference r50;
+    private EventReference r100;
+    private EventReference r200;
+    private EventReference r300;
+    private EventReference r400;
+    private EventReference r500;
+    private EventReference r600;
+    private EventReference r700;
+    private EventReference r800;
+    private EventReference r900;
+    private EventReference r1000;
+    private EventReference r2000;
+    private EventReference meters;
 
-    [Header("Controls")]
-    [SerializeField] private EventReference changingToMainGun;
-    [SerializeField] private EventReference changingToMachinegun;
-    [SerializeField] private EventReference turmAus;
-    [SerializeField] private EventReference beobachten;
-    [SerializeField] private EventReference stabEin;
+    // Hit Report
+    private EventReference tankDestroyed;
+    private EventReference ifvDestroyed;
+    private EventReference troopsDestroyed;
+    private EventReference firing;
 
-    [Header("Responses")]
-    [SerializeField] private EventReference roger;
-    [SerializeField] private EventReference iDidNotUnderstand;
+    // Controls
+    private EventReference changingToMainGun;
+    private EventReference changingToMachinegun;
+    private EventReference turmAus;
+    private EventReference beobachten;
+    private EventReference stabEin;
+
+    // Responses
+    private EventReference roger;
+    private EventReference iDidNotUnderstand;
 
 
 
@@ -79,6 +84,14 @@ public class GunnerVoiceManager : MonoBehaviour
     // ----- ON START -----
     private void Start()
     {
+        if (voice == null || !voice.ValidateVoiceLines())
+        {
+            Debug.Log("Voice lines for Gunner was NOT loaded correctly!");
+            return;
+        }
+
+        LoadVoiceLines();
+
         oneShotVoiceLines = new()
         {
             {OneShot.TankDestroyed, tankDestroyed },
@@ -94,6 +107,55 @@ public class GunnerVoiceManager : MonoBehaviour
             {OneShot.IDidNotUnderstand, iDidNotUnderstand },
         };
     }
+    private void LoadVoiceLines()
+    {
+        contact = voice.Contact;
+        ifv_frontaly = voice.Ifv_frontaly;
+        ifv_side = voice.Ifv_side;
+        tank_frontaly = voice.Tank_frontaly;
+        tank_side = voice.Tank_side;
+        troops = voice.Troops;
+        oneOClock = voice.OneOClock;
+        twoOClock = voice.TwoOClock;
+        threeOClock = voice.ThreeOClock;
+        fourOClock = voice.FourOClock;
+        fiveOClock = voice.FiveOClock;
+        sixOClock = voice.SixOClock;
+        sevenOClock = voice.SevenOClock;
+        eightOClock = voice.EightOClock;
+        nineOClock = voice.NineOClock;
+        tenOClock = voice.TenOClock;
+        elevenOClock = voice.ElevenOClock;
+        twelveOClock = voice.TwelveOClock;
+        range = voice.Range;
+        r50 = voice.R50;
+        r100 = voice.R100;
+        r200 = voice.R200;
+        r300 = voice.R300;
+        r400 = voice.R400;
+        r500 = voice.R500;
+        r600 = voice.R600;
+        r700 = voice.R700;
+        r800 = voice.R800;
+        r900 = voice.R900;
+        r1000 = voice.R1000;
+        r2000 = voice.R2000;
+        meters = voice.Meters;
+
+        tankDestroyed = voice.TankDestroyed;
+        ifvDestroyed = voice.IfvDestroyed;
+        troopsDestroyed = voice.TroopsDestroyed;
+        firing = voice.Firing;
+
+        changingToMainGun = voice.ChangingToMainGun;
+        changingToMachinegun = voice.ChangingToMachinegun;
+        turmAus = voice.TurmAus;
+        beobachten = voice.Beobachten;
+        stabEin = voice.StabEin;
+
+        roger = voice.Roger;
+        iDidNotUnderstand = voice.IDidNotUnderstand;
+    }
 
 
     // ----- PUBLIC METHODS -----
@@ -104,15 +166,7 @@ public class GunnerVoiceManager : MonoBehaviour
             RuntimeManager.PlayOneShot(oneShotVoiceLines[voiceLine]);
         }
     }
-    public enum ContactType
-    {
-        Ifv_Frontaly,
-        Ifv_Side,
-        Tank_Frontaly,
-        Tank_Side,
-        Troops,
-    }
-    public IEnumerator PlayContactReport(ContactType contactType, float localAzimuth, float range)
+    public IEnumerator PlayContactReport(TargetFacingDirection targetDir, TargetType contactType, float localAzimuth, float range)
     {
         // Contact
         EventInstance instance = RuntimeManager.CreateInstance(contact);
@@ -126,24 +180,22 @@ public class GunnerVoiceManager : MonoBehaviour
         }
 
         // Contact type
-        switch (contactType)
+        if (contactType == TargetType.Tank && targetDir == TargetFacingDirection.Front)
+            instance = RuntimeManager.CreateInstance(tank_frontaly);
+        else if (contactType == TargetType.Tank && targetDir == TargetFacingDirection.Side)
+            instance = RuntimeManager.CreateInstance(tank_side);
+        else if (contactType == TargetType.IFV && targetDir == TargetFacingDirection.Front)
+            instance = RuntimeManager.CreateInstance(ifv_frontaly);
+        else if (contactType == TargetType.IFV && targetDir == TargetFacingDirection.Side)
+            instance = RuntimeManager.CreateInstance(ifv_side);
+        else if (contactType == TargetType.Infantry)
+            instance = RuntimeManager.CreateInstance(troops);
+        else // Fallback 
         {
-            case ContactType.Ifv_Frontaly:
-                instance = RuntimeManager.CreateInstance(ifv_frontaly);
-                break;
-            case ContactType.Ifv_Side:
-                instance = RuntimeManager.CreateInstance(ifv_side);
-                break;
-            case ContactType.Tank_Frontaly:
-                instance = RuntimeManager.CreateInstance(tank_frontaly);
-                break;
-            case ContactType.Tank_Side:
-                instance = RuntimeManager.CreateInstance(tank_side);
-                break;
-            case ContactType.Troops:
-                instance = RuntimeManager.CreateInstance(troops);
-                break;
+            Debug.Log($"Fallback for contact type {contactType} and direction {targetDir}");
+            instance = RuntimeManager.CreateInstance(tank_frontaly);
         }
+        
         instance.start();
         instance.getPlaybackState(out state);
         // Wait until it stops

@@ -10,6 +10,8 @@ public class Projectile : MonoBehaviour
     [Header("Ammo stats")]
     public Loader.AmmoType ammoType;
 
+    public Gunner gunner;
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -17,18 +19,23 @@ public class Projectile : MonoBehaviour
         ContactPoint contact = collision.contacts[0];
         bool isGround = collision.gameObject.CompareTag("Ground");
 
+        // Enemy hit
+        if (collision.collider.gameObject.layer == 9 && collision.collider.TryGetComponent(out PartOfEnemy poe))
+        {
+            // For testing purposes it's insta death
+            gunner.SetResultOfFiring(poe.enemy.targetType, true, true);
+        }
+
         // Spawn explosion effect based on ammo type
         switch (ammoType)
         {
             case Loader.AmmoType.KE:
+                GameObject effect = null;
                 if (isGround)
-                {
-                    Instantiate(KE_Impact_Effect_Ground, contact.point, Quaternion.LookRotation(Vector3.forward));
-                }
+                    effect = KE_Impact_Effect_Ground;
                 else
-                {
-                    
-                }
+                    effect = KE_Impact_Effect_Ground;
+                Instantiate(effect, contact.point, Quaternion.LookRotation(Vector3.forward));
                 break;
             case Loader.AmmoType.MZ:
 

@@ -6,11 +6,13 @@ public class InteractableCommanderPeri : Interactable
 {
     [SerializeField] private Commander commander;
 
+    public override bool CanInteract()
+    {
+        return commander.currentPosition == Commander.Position.Inside;
+    }
 
     public override void Interact()
     {
-        Debug.Log("Interacted with Commander Peri.");
-
         commander.StartInteractionCooldown();
         commander.TogglePeriView(!commander.commanderPeriscope_Active);
     }

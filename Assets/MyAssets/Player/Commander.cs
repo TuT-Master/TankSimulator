@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,13 +41,12 @@ public class Commander : MonoBehaviour
     [SerializeField] private Camera commanderPeriscope_camera;
     [SerializeField] private GameObject commanderPeriscope_UI;
     [SerializeField] private RectTransform commanderPeriscope_clock;
-    [SerializeField] private RectTransform commanderPeriscope_strichbild;
     [SerializeField] private float commanderPeriscope_ElevationMin = -20f;
     [SerializeField] private float commanderPeriscope_ElevationMax = 60f;
     private float commanderPeriscope_CurrentElevationSpeed = 0f;
     private float commanderPeriscope_CurrentRotationSpeed = 0f;
     public bool commanderPeriscope_Active = false;
-    private float commanderPeriscope_CurrentAzimuth = 90f;
+    private float commanderPeriscope_CurrentAzimuth = 90f; // Because unity vs blender rotation :/
     private float commanderPeriscope_CurrentElevation_World = 0f;
     private readonly Dictionary<ZoomLevel, float> commanderPeriscope_ZoomLevels = new()
     {
@@ -59,6 +59,18 @@ public class Commander : MonoBehaviour
     private bool commanderPeriscope_FastMode_Active = false;
     private readonly float commanderPeriscope_maxSpeed = 20f;
     private readonly float commanderPeriscope_maxSpeedInFastMode = 40f;
+
+    [Header("Player UI")]
+    [SerializeField] private GameObject playerUI;
+    [SerializeField] private ESCScreen ESCScreen;
+    [SerializeField] private TextMeshProUGUI lastCommand_text;
+    [SerializeField] private TextMeshProUGUI helpTextOn_text;
+    [SerializeField] private TextMeshProUGUI helpTextOff_text;
+
+    [Header("Commander Hatch Cameras")]
+    [SerializeField] private List<Camera> cameras;
+    private bool _lookingThroughPeriscope;
+
 
     // Zoom levels
     private enum ZoomLevel
@@ -80,7 +92,6 @@ public class Commander : MonoBehaviour
 
 
 
-
     // ----- ON START -----
     void Start()
     {
@@ -88,44 +99,21 @@ public class Commander : MonoBehaviour
         Cursor.visible = false;
 
         currentPosition = Position.Inside;
-        GoToPosition(currentPosition);
+        StartCoroutine(GoToPosition(currentPosition));
         commanderPeriscope.transform.localEulerAngles = new(90f, 90f, 90f);
         TogglePeriView(false);
     }
 
 
-    // ----- CAMERA MOVEMENT -----
+    // ----- ON UPDATE -----
     void Update()
     {
-        if (!commanderPeriscope_Active)
-            CameraMovement_WithXLimit();
-        else
-            CameraMovement_CommanderPeri_World();
-
         MyInput();
-    }
-    private void CameraMovement_WithXLimit()
-    {
-        float mouseX = Input.GetAxis("Mouse X") * camera_X_sensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * camera_Y_sensitivity * Time.deltaTime;
-
-        Vector3 currentRotation = playerCamera.transform.localEulerAngles;
-
-        float desiredX = currentRotation.y + mouseX;
-        float desiredY = currentRotation.x - mouseY;
-
-        // Convert to -180 to 180 range
-        desiredX = (desiredX > 180) ? desiredX - 360 : desiredX;
-        desiredX = Mathf.Clamp(desiredX, camera_X_minAngle, camera_X_maxAngle);
-        desiredY = (desiredY > 180) ? desiredY - 360 : desiredY;
-        desiredY = Mathf.Clamp(desiredY, camera_Y_minAngle, camera_Y_maxAngle);
-
-        playerCamera.transform.localEulerAngles = new Vector3(desiredY, desiredX, 0f);
     }
 
 
     // ----- COMMANDER PERI -----
-    private void CameraMovement_CommanderPeri_World()
+    private void CommanderPeriMovement()
     {
         // --- PLAYER INPUT ---
         if (Input.GetMouseButton(1))
@@ -174,90 +162,117 @@ public class Commander : MonoBehaviour
         // Rotate strichbild + clock
         Quaternion rel = Quaternion.Inverse(turretTransform.rotation) * commanderPeriscope.transform.rotation;
         float angleY = rel.eulerAngles.y;
-        //commanderPeriscope_strichbild.localEulerAngles = new Vector3(0f, 0f, -angleY);
         commanderPeriscope_clock.localEulerAngles = new Vector3(0f, 0f, angleY);
     }
-    private Vector3 GetDirectionFromPeri()
-    {
-        Quaternion worldYaw = Quaternion.AngleAxis(commanderPeriscope_CurrentAzimuth, Vector3.down);
-        Vector3 yawForward = worldYaw * Vector3.forward;
-        Vector3 worldRight = Vector3.Cross(Vector3.up, yawForward).normalized;
-        Quaternion worldPitch = Quaternion.AngleAxis(commanderPeriscope_CurrentElevation_World, worldRight);
-
-        return worldPitch * worldYaw * Vector3.forward;
-    }
-    private Vector3 GetTargetPointFromPeri()
+    private Vector3 GetTargetPositionFromPeri(out GameObject target)
     {
         Vector3 origin = commanderPeriscope_camera.transform.position;
         Vector3 dir = commanderPeriscope_camera.transform.forward;
 
-        if (Physics.Raycast(origin, dir, out RaycastHit hit, gunner.maxFCSCalculationRange, periHitMask, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(origin, dir, out RaycastHit hit, 5000f, periHitMask))
         {
             _lastPeriAimPoint = hit.point;
             _hasLastPeriAimPoint = true;
+
+            target = hit.collider.gameObject;
+            if(target.CompareTag("Ground")) // If target is ground then it's not valid target
+                target = null;
+
             return hit.point;
         }
-
-        return _hasLastPeriAimPoint ? _lastPeriAimPoint : -(origin + dir * gunner.maxFCSCalculationRange);
+        else
+        {
+            target = null;
+            return commanderPeriscope_camera.transform.forward * 5000f;
+        }
     }
 
 
     // ----- INPUT -----
     private void MyInput()
     {
-        if (isInVehicle && Input.GetKeyDown(KeyCode.I))
+        // ESC screen
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            GoToPosition(Position.Inside);
-
-            loader.Hatch_OpenClose(false);
-            Hatch_OpenCLose(false);
-        }
-        else if (isInVehicle && Input.GetKeyDown(KeyCode.O) && currentPosition == Position.Outside_low)
-        {
-            GoToPosition(Position.Outside_high);
-        }
-        else if (isInVehicle && Input.GetKeyDown(KeyCode.O))
-        {
-            if(currentPosition == Position.Inside)
+            if (binoculars_Active)
             {
-                loader.Hatch_OpenClose(true);
-                Hatch_OpenCLose(true);
+                binoculars_Active = false;
+                binoculars.enabled = false;
             }
+            else if (commanderPeriscope_Active)
+            {
+                TogglePeriView(false);
+            }
+            else
+            {
+                ToggleESCScreen(!ESCScreen.IsOpen);
+            }
+        }
 
-            GoToPosition(Position.Outside_low);
+        if (ESCScreen.IsOpen)
+            return;
+        
+        // Positioning
+        if(!binoculars_Active && !commanderPeriscope_Active)
+        {
+            if (isInVehicle && Input.GetKeyDown(KeyCode.I))
+            {
+                StartCoroutine(GoToPosition(Position.Inside, hatchAction: HatchAction.Close));
+            }
+            else if (isInVehicle && Input.GetKeyDown(KeyCode.O) && currentPosition == Position.Outside_low)
+            {
+                StartCoroutine(GoToPosition(Position.Outside_high));
+            }
+            else if (isInVehicle && Input.GetKeyDown(KeyCode.O))
+            {
+                if (currentPosition == Position.Inside)
+                {
+                    StartCoroutine(GoToPosition(Position.Outside_low, hatchAction: HatchAction.Open));
+                }
+                else
+                {
+                    StartCoroutine(GoToPosition(Position.Outside_low));
+                }
+            }
         }
 
         // Binoculars
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.B) && currentPosition != Position.Inside)
         {
             binoculars_Active = !binoculars_Active;
             binoculars.enabled = binoculars_Active;
         }
 
+        // UI
+        ToggleHelpText(Input.GetKey(KeyCode.F1));
+
         // Test
         if (Input.GetKeyDown(KeyCode.L))
         {
-            loader.ClickOnPanel(Loader.LoadersPanelAction.SwitchAmmoType_To_KE);
-        }
-        else if (Input.GetKeyDown(KeyCode.K))
-        {
-            loader.LoadAmmoType(Loader.AmmoType.KE);
+            loader.SetNextAmmoType(loader.currentAmmoTypeLoaded == Loader.AmmoType.KE ? Loader.AmmoType.MZ : Loader.AmmoType.KE);
         }
         else if (Input.GetKeyDown(KeyCode.P))
         {
             loader.ClickOnPanel(Loader.LoadersPanelAction.Fire);
         }
-        else if (Input.GetKeyDown(KeyCode.C))
-        {
-            gunner.TraverseToDirection(GetDirectionFromPeri());
-        }
         else if (Input.GetKeyDown(KeyCode.V))
         {
-            gunner.TraverseToPoint(GetTargetPointFromPeri());
+            Vector3 targetPos = GetTargetPositionFromPeri(out GameObject target);
+
+            if (target == null)
+                gunner.TraverseToPoint(targetPos);
+            else
+                gunner.TraverseToTarget(target);
         }
         else if (Input.GetKeyDown(KeyCode.R))
         {
             commanderPeriscope_FastMode_Active = !commanderPeriscope_FastMode_Active;
+        }
+        else if (Input.GetKeyDown(KeyCode.K))
+        {
+            gunner.StabilizerActive = false;
+            gunner.TraverseToAngle_X(-15f);
+            gunner.TraverseToAngle_Y(-10f);
         }
     }
     public void StartInteractionCooldown()
@@ -270,11 +285,24 @@ public class Commander : MonoBehaviour
         yield return new WaitForSeconds(interactCooldown);
         canInteract = true;
     }
+    private void ToggleESCScreen(bool toggle)
+    {
+        ESCScreen.IsOpen = toggle;
+        ESCScreen.gameObject.SetActive(toggle);
+        Cursor.visible = toggle;
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
+    }
 
 
     // ----- LATE UPDATE -----
     private void LateUpdate()
     {
+        if (!commanderPeriscope_Active)
+            PlayerCameraMovement();
+        else
+            CommanderPeriMovement();
+
+
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
         // Binoculars Zoom
@@ -309,6 +337,26 @@ public class Commander : MonoBehaviour
             playerCamera.fieldOfView = 60f;
         }
     }
+    private void PlayerCameraMovement()
+    {
+        if (ESCScreen.IsOpen || _lookingThroughPeriscope) return;
+
+        float mouseX = Input.GetAxis("Mouse X") * camera_X_sensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * camera_Y_sensitivity * Time.deltaTime;
+
+        Vector3 currentRotation = playerCamera.transform.localEulerAngles;
+
+        float desiredX = currentRotation.y + mouseX;
+        float desiredY = currentRotation.x - mouseY;
+
+        // Convert to -180 to 180 range
+        desiredX = (desiredX > 180) ? desiredX - 360 : desiredX;
+        //desiredX = Mathf.Clamp(desiredX, camera_X_minAngle, camera_X_maxAngle);
+        desiredY = (desiredY > 180) ? desiredY - 360 : desiredY;
+        desiredY = Mathf.Clamp(desiredY, camera_Y_minAngle, camera_Y_maxAngle);
+
+        playerCamera.transform.localEulerAngles = new Vector3(desiredY, desiredX, 0f);
+    }
 
 
     // ----- SWITCHING POSITIONS -----
@@ -318,7 +366,13 @@ public class Commander : MonoBehaviour
         Outside_low,
         Outside_high,
     }
-    private void GoToPosition(Position position)
+    private enum HatchAction
+    {
+        None,
+        Open,
+        Close,
+    }
+    private IEnumerator GoToPosition(Position position, HatchAction hatchAction = HatchAction.None)
     {
         Transform targetPosition = position switch
         {
@@ -327,21 +381,60 @@ public class Commander : MonoBehaviour
             Position.Outside_high => position_outside_high,
             _ => null
         };
+        
+        if (targetPosition != null)
+        {
+            switch (hatchAction)
+            {
+                case HatchAction.Open:
+                    loader.Hatch_OpenClose(true);
+                    Hatch_OpenCLose(true);
 
-        if (targetPosition == null) return;
+                    yield return new WaitForSeconds(1.5f);
 
-        transform.SetParent(targetPosition);
-        transform.localPosition = Vector3.zero;
-        currentPosition = position;
+                    transform.SetParent(targetPosition);
+                    transform.localPosition = Vector3.zero;
+                    currentPosition = position;
+                    break;
+                case HatchAction.Close:
+                    loader.Hatch_OpenClose(false);
+                    Hatch_OpenCLose(false);
+
+                    yield return new WaitForSeconds(1f);
+
+                    transform.SetParent(targetPosition);
+                    transform.localPosition = Vector3.zero;
+                    currentPosition = position;
+                    break;
+                case HatchAction.None:
+                    transform.SetParent(targetPosition);
+                    transform.localPosition = Vector3.zero;
+                    currentPosition = position;
+                    break;
+            }
+        }
     }
     public void TogglePeriView(bool toggle)
     {
         playerCamera.enabled = !toggle;
+        playerUI.SetActive(!toggle);
 
         commanderPeriscope_UI.SetActive(toggle);
         commanderPeriscope_camera.enabled = toggle;
 
         commanderPeriscope_Active = toggle;
+    }
+
+
+    // ----- UI -----
+    public void SetLastCommandTest(string commandText)
+    {
+        lastCommand_text.text = $"Last command:\n{commandText}";
+    }
+    private void ToggleHelpText(bool toggle)
+    {
+        helpTextOn_text.enabled = toggle;
+        helpTextOff_text.enabled = !toggle;
     }
 
 
@@ -352,5 +445,23 @@ public class Commander : MonoBehaviour
 
         hatch_Open = open;
         turretAnimator.SetTrigger(open ? "Open_CommanderHatch" : "Close_CommanderHatch");
+    }
+    public void LookIntoPeriscope(Camera periscopeCamera)
+    {
+        _lookingThroughPeriscope = !_lookingThroughPeriscope;
+        playerCamera.enabled = !_lookingThroughPeriscope;
+        playerUI.SetActive(!_lookingThroughPeriscope);
+
+        if(_lookingThroughPeriscope) // Disable all cameras except one you are looking through
+        {
+            foreach (Camera c in cameras)
+                if (c != periscopeCamera)
+                    c.enabled = false;
+        }
+        else // Enable all cameras when NOT looking through any of it rn
+        {
+            foreach (Camera c in cameras)
+                c.enabled = true;
+        }
     }
 }

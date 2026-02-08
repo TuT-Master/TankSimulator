@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Mathematics;                 // float3, float4x4
 using UnityEngine.Splines;
+using System.Collections.Generic;
 
 public class TrackSplineDriver : MonoBehaviour
 {
@@ -30,9 +31,6 @@ public class TrackSplineDriver : MonoBehaviour
     [Tooltip("Half the distance from hull centerline to track centerline (meters).")]
     public float halfTrackWidth = 0.8f;
 
-    [Tooltip("Extra sign fix if your belt scrolls the wrong way (+1 or -1).")]
-    public float beltDirSign = 1f;
-
     [Tooltip("Smoothing for the auto-computed belt speed.")]
     public float mpsSmoothing = 10f;
 
@@ -41,6 +39,8 @@ public class TrackSplineDriver : MonoBehaviour
 
     [Header("Manual (used if autoDrive = false)")]
     public float metersPerSec = 0f;      // belt speed (manual)
+
+    [SerializeField] private List<WheelCollider> wheelColliders;
 
     // --- cached lengths ---
     float loopLenWorld = 0f;             // world-space loop length
@@ -59,18 +59,12 @@ public class TrackSplineDriver : MonoBehaviour
         // ---------- Auto-compute belt m/s from hull motion ----------
         if (autoDrive && tankRb && tankRoot)
         {
-            // Forward linear speed (m/s)
-            float vFwd = Vector3.Dot(tankRb.velocity, tankRoot.forward);
-
-            // Yaw rate (rad/s) about hull up
-            float yaw = Vector3.Dot(tankRb.angularVelocity, tankRoot.up);
-
-            // Linear speed contribution at this track due to yaw
-            // Right side: +yaw * halfTrackWidth ; Left side: -yaw * halfTrackWidth
-            float sideLinear = yaw * (isLeftSide ? -halfTrackWidth : +halfTrackWidth);
-
             // Desired belt linear speed relative to hull (m/s)
-            float targetMps = (vFwd + sideLinear) * beltDirSign;
+            float leastRPM = 999f;
+            foreach(WheelCollider wc in wheelColliders)
+                if(wc.rpm < leastRPM)
+                    leastRPM = wc.rpm;
+            float targetMps = leastRPM / 60f * Mathf.PI * wheelColliders[0].radius * 2f;
 
             // Smooth & clamp
             float lerp = 1f - Mathf.Exp(-mpsSmoothing * Time.deltaTime);
@@ -131,7 +125,6 @@ public class TrackSplineDriver : MonoBehaviour
             trackBones[i].SetPositionAndRotation(pos + outward * outwardOffset, rot);
         }
     }
-
     public void RecalcLength()
     {
         if (spline == null || spline.Spline == null)
@@ -147,7 +140,6 @@ public class TrackSplineDriver : MonoBehaviour
         // Local-space length (identity matrix)
         loopLenLocal = SplineUtility.CalculateLength(spline.Spline, float4x4.identity);
     }
-
     static float Repeat(float v, float len)
     {
         if (len <= 1e-5f) return 0f;

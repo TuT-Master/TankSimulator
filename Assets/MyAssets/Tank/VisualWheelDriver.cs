@@ -10,7 +10,7 @@ public class WheelVisualDriver : MonoBehaviour
     [Header("Wheel Settings")]
     public float radius = 0.35f;
     public bool rotateOnly = false;     // sprocket, idler: true
-    public float rotationScale = 1.0f;  // tweak if mesh doesn’t match movement
+    public float rotationScale = 1.0f;  // tweak if mesh doesnï¿½t match movement
 
     private float rotationAngle = 0f;
 
@@ -26,7 +26,7 @@ public class WheelVisualDriver : MonoBehaviour
         if (!tankRb || !tankRoot) return;
 
         // ===== Wheel rotation =====
-        float forwardVel = Vector3.Dot(tankRb.velocity, tankRoot.forward);
+        float forwardVel = Vector3.Dot(tankRb.linearVelocity, tankRoot.forward);
         float wheelCircum = 2f * Mathf.PI * radius;
         float wheelRpm = (forwardVel / wheelCircum) * rotationScale;
 

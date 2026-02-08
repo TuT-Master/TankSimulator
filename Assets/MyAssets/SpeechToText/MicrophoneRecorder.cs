@@ -47,7 +47,7 @@ public class MicrophoneRecorder : MonoBehaviour
     private async void Update()
     {
         // Toggle training mode
-        if (Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.F2))
         {
             trainingMode = !trainingMode;
             outputText.text = trainingMode
@@ -57,7 +57,7 @@ public class MicrophoneRecorder : MonoBehaviour
         }
 
         // Cycle between a few known commands (just for testing)
-        if (Input.GetKeyDown(KeyCode.F2))
+        if (Input.GetKeyDown(KeyCode.F3))
         {
             if (trainingLabels == null || trainingLabels.Count == 0)
             {

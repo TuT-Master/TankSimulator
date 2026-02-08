@@ -152,13 +152,13 @@ public class TankMovement : MonoBehaviour
         if (!noCommand) return;
 
         // split velocity into along-plane (horizontal) and normal (vertical)
-        Vector3 v = rb.velocity;
+        Vector3 v = rb.linearVelocity;
         Vector3 vPlane = Vector3.ProjectOnPlane(v, planeNormal);
         Vector3 vNormal = v - vPlane;
 
         // gently damp only the plane component (so it coasts, not bricks)
         vPlane = Vector3.Lerp(vPlane, Vector3.zero, idleDamp * Time.fixedDeltaTime);
-        rb.velocity = vPlane + vNormal;
+        rb.linearVelocity = vPlane + vNormal;
     }
 
 }
