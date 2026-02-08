@@ -2,6 +2,7 @@
 using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using UnityEngine;
 using UnityEngine.Rendering.UI;
 using static Enemy;
@@ -84,6 +85,7 @@ public class Gunner : MonoBehaviour
         Side,
         Back,
     }
+    [SerializeField] private Commander commander;
 
 
     // FCS variables
@@ -192,6 +194,7 @@ public class Gunner : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             StartCoroutine(Fire_MainCannon());
+            commander.SetLastCommandText($"Fire with main gun");
         }
     }
 

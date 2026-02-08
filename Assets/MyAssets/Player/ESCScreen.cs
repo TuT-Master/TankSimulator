@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class ESCScreen : MonoBehaviour
 {
     public bool IsOpen = false;
-    [SerializeField] private SceneAsset Scene_MainMenu;
+    [SerializeField] private string Scene_MainMenu_name;
 
 
     // ----- START -----
@@ -20,7 +20,7 @@ public class ESCScreen : MonoBehaviour
     // ----- BUTTONS -----
     public void BackToMainMenu()
     {
-        StartCoroutine(LoadSceneAsync(Scene_MainMenu));
+        StartCoroutine(LoadSceneAsync(Scene_MainMenu_name));
     }
     public void Continue()
     {
@@ -30,9 +30,9 @@ public class ESCScreen : MonoBehaviour
 
 
     // ----- SCENE MANAGEMENT -----
-    private IEnumerator LoadSceneAsync(SceneAsset scene)
+    private IEnumerator LoadSceneAsync(string sceneName)
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(scene.name);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
 
         while (operation.progress < 1)
         {

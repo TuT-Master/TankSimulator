@@ -16385,6 +16385,7 @@ MonoBehaviour:
       Data3: -1482891903
       Data4: 1067243933
     Path: event:/Tank/Engine
+  commander: {fileID: 6233711172287149054}
 --- !u!1 &5718438001036593104
 GameObject:
   m_ObjectHideFlags: 0
@@ -36616,6 +36617,11 @@ PrefabInstance:
       propertyPath: _CanShoot
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2080034306506103434, guid: b158a320b952bd2498bfc34c29d768ca,
+        type: 3}
+      propertyPath: commander
+      value: 
+      objectReference: {fileID: 6233711172287149054}
     - target: {fileID: 2080034306506103434, guid: b158a320b952bd2498bfc34c29d768ca,
         type: 3}
       propertyPath: tankPivot

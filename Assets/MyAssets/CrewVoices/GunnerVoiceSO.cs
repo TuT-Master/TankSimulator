@@ -52,6 +52,7 @@ public class GunnerVoiceSO : CrewVoiceSO
 
     public override bool ValidateVoiceLines()
     {
+    #if UNITY_EDITOR
         List<EventReference> voiceLines = new()
         {
             Roger,
@@ -102,6 +103,7 @@ public class GunnerVoiceSO : CrewVoiceSO
         foreach (EventReference er in voiceLines)
             if (er.Path.Length == 0)
                 return false;
+    #endif
 
         return true;
     }

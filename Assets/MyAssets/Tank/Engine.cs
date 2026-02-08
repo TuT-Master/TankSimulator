@@ -61,6 +61,8 @@ public class Engine : MonoBehaviour
     private EventInstance engineSoundEvent;
     private bool engineSoundPlaying = false;
 
+    [Header("Last Command")]
+    [SerializeField] private Commander commander;
 
 
 
@@ -122,6 +124,9 @@ public class Engine : MonoBehaviour
 
         // Set variables
         desiredRPM = idleRPM;
+
+        // Break because neutral shifted by default
+        Brake();
     }
     private void ReadValuesFromEngineModel()
     {
@@ -168,10 +173,12 @@ public class Engine : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.W))
             {
                 desiredSpeed += desiredSpeed_step;
+                commander.SetLastCommandText($"Increased desired speed");
             }
             else if (Input.GetKeyDown(KeyCode.S))
             {
                 desiredSpeed -= desiredSpeed_step;
+                commander.SetLastCommandText($"Decreased desired speed");
             }
             desiredSpeed = Mathf.Clamp(
                 desiredSpeed,
@@ -301,17 +308,20 @@ public class Engine : MonoBehaviour
     {
         gearState = GearState.Forward;
         currentGear = 1;
+        commander.SetLastCommandText($"Shifted forward");
     }
     private void ShiftReverse()
     {
         gearState = GearState.Reverse;
         currentGear = 1;
+        commander.SetLastCommandText($"Shifted reverse");
     }
     private void ShiftNeutral()
     {
         gearState = GearState.Neutral;
         currentGear = 0;
         Brake();
+        commander.SetLastCommandText($"Shifted neutral");
     }
     private void Upshift()
     {

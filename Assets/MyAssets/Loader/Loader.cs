@@ -64,6 +64,13 @@ public class Loader : MonoBehaviour
     public void SetNextAmmoType(AmmoType ammoType)
     {
         nextAmmoTypeToLoad = ammoType;
+    }
+    public void ForceReloadWithNewAmmunitionType()
+    {
+        if (nextAmmoTypeToLoad == currentAmmoTypeLoaded) return;
+        if (status == LoaderStatus.Fire) return;
+
+        // Click on panel to switch ammo type
         switch (nextAmmoTypeToLoad)
         {
             case AmmoType.KE:
@@ -79,6 +86,16 @@ public class Loader : MonoBehaviour
                 // Unload the gun
                 break;
         }
+
+        // Unload the gun
+        UnloadMainGun();
+
+        // Load with new ammo type
+        ReloadMainGun();
+    }
+    private void UnloadMainGun()
+    {
+
     }
     public void ReloadMainGun()
     {

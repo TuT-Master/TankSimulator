@@ -2057,7 +2057,7 @@ Terrain:
   m_TerrainData: {fileID: 15600000, guid: 866c9b37a9524864f91e6c64fa777da9, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 500
-  m_TreeCrossFadeLength: 5
+  m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 200
   m_DetailObjectDistance: 100
   m_DetailObjectDensity: 1
@@ -2518,7 +2518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsOpen: 0
-  Scene_MainMenu: {fileID: 102900000, guid: 87df787da0d777a4c871cc803844a9c3, type: 3}
+  Scene_MainMenu_name: MainMenu
 --- !u!114 &2033789579
 MonoBehaviour:
   m_ObjectHideFlags: 0

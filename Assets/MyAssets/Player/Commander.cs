@@ -198,10 +198,12 @@ public class Commander : MonoBehaviour
             {
                 binoculars_Active = false;
                 binoculars.enabled = false;
+                SetLastCommandText("Boniculars disabled");
             }
             else if (commanderPeriscope_Active)
             {
                 TogglePeriView(false);
+                SetLastCommandText("Exitted peri view");
             }
             else
             {
@@ -218,20 +220,24 @@ public class Commander : MonoBehaviour
             if (isInVehicle && Input.GetKeyDown(KeyCode.I))
             {
                 StartCoroutine(GoToPosition(Position.Inside, hatchAction: HatchAction.Close));
+                SetLastCommandText("Switch position from outside to inside");
             }
             else if (isInVehicle && Input.GetKeyDown(KeyCode.O) && currentPosition == Position.Outside_low)
             {
                 StartCoroutine(GoToPosition(Position.Outside_high));
+                SetLastCommandText("Switch position from outside low to outside high");
             }
             else if (isInVehicle && Input.GetKeyDown(KeyCode.O))
             {
                 if (currentPosition == Position.Inside)
                 {
                     StartCoroutine(GoToPosition(Position.Outside_low, hatchAction: HatchAction.Open));
+                    SetLastCommandText("Switch position from inside to outside");
                 }
                 else
                 {
                     StartCoroutine(GoToPosition(Position.Outside_low));
+                    SetLastCommandText("Switch position from outside high to outside low");
                 }
             }
         }
@@ -241,6 +247,7 @@ public class Commander : MonoBehaviour
         {
             binoculars_Active = !binoculars_Active;
             binoculars.enabled = binoculars_Active;
+            SetLastCommandText($"Binoculars {(binoculars_Active ? "enabled" : "disabled")}");
         }
 
         // UI
@@ -250,29 +257,39 @@ public class Commander : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             loader.SetNextAmmoType(loader.currentAmmoTypeLoaded == Loader.AmmoType.KE ? Loader.AmmoType.MZ : Loader.AmmoType.KE);
+            SetLastCommandText($"Set next ammo type {(loader.currentAmmoTypeLoaded == Loader.AmmoType.KE ? Loader.AmmoType.MZ : Loader.AmmoType.KE)}");
         }
         else if (Input.GetKeyDown(KeyCode.P))
         {
             loader.ClickOnPanel(Loader.LoadersPanelAction.Fire);
+            SetLastCommandText("Loader - Click on panel - Fire");
         }
         else if (Input.GetKeyDown(KeyCode.V))
         {
             Vector3 targetPos = GetTargetPositionFromPeri(out GameObject target);
 
             if (target == null)
+            {
                 gunner.TraverseToPoint(targetPos);
+                SetLastCommandText("Aim gun at position");
+            }
             else
+            {
                 gunner.TraverseToTarget(target);
+                SetLastCommandText($"Aim gun at target {target.name}");
+            }
         }
         else if (Input.GetKeyDown(KeyCode.R))
         {
             commanderPeriscope_FastMode_Active = !commanderPeriscope_FastMode_Active;
+            SetLastCommandText($"Commander periscope fast mode {(commanderPeriscope_FastMode_Active ? "enabled" : "disabled")}");
         }
         else if (Input.GetKeyDown(KeyCode.K))
         {
             gunner.StabilizerActive = false;
             gunner.TraverseToAngle_X(-15f);
             gunner.TraverseToAngle_Y(-10f);
+            SetLastCommandText("Turret to rest position");
         }
     }
     public void StartInteractionCooldown()
@@ -427,7 +444,7 @@ public class Commander : MonoBehaviour
 
 
     // ----- UI -----
-    public void SetLastCommandTest(string commandText)
+    public void SetLastCommandText(string commandText)
     {
         lastCommand_text.text = $"Last command:\n{commandText}";
     }

@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private SceneAsset Scene_ShootingRange;
+    [SerializeField] private string Scene_ShootingRange_name;
 
 
     // ----- BUTTONS -----
     public void StartGame()
     {
-        StartCoroutine(LoadSceneAsync(Scene_ShootingRange));
+        StartCoroutine(LoadSceneAsync(Scene_ShootingRange_name));
     }
     public void ExitGame()
     {
@@ -21,9 +21,9 @@ public class MainMenu : MonoBehaviour
 
 
     // ----- SCENE MANAGEMENT -----
-    private IEnumerator LoadSceneAsync(SceneAsset scene)
+    private IEnumerator LoadSceneAsync(string sceneName)
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(scene.name);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
 
         while(operation.progress < 1)
         {
