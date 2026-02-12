@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3540025845609826665}
   - component: {fileID: 276076387632365056}
   - component: {fileID: 4346379748194075015}
-  - component: {fileID: 3413997317137873204}
   - component: {fileID: -7551579270617477802}
   m_Layer: 8
   m_Name: MZ_Projectile_Prefab
@@ -117,33 +116,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &3413997317137873204
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1799824853429180391}
-  serializedVersion: 5
-  m_Mass: 0.00001
-  m_LinearDamping: 0
-  m_AngularDamping: 0
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 2
 --- !u!114 &-7551579270617477802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,9 +128,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebd8cd32bf20ef4a88aaeef633bc598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KE_Impact_Effect_Ground: {fileID: 1469856625574039601, guid: e97ec04a3f2743242beba3841aab53c3,
+  MuzzleVelocity: 800
+  Mass: 10
+  AirDrag: 0.002
+  groundTag: Ground
+  enemyTag: Enemy
+  KE_Impact_Effect_Ground: {fileID: 0}
+  KE_Impact_Effect_Armor: {fileID: 0}
+  MZ_Impact_Effect_Ground: {fileID: 1469856625574039601, guid: e97ec04a3f2743242beba3841aab53c3,
     type: 3}
-  ammoType: 1
+  MZ_Impact_Effect_Armor: {fileID: 1469856625574039601, guid: e97ec04a3f2743242beba3841aab53c3,
+    type: 3}
+  ammoType: 2
   gunner: {fileID: 0}
 --- !u!1 &4384676718065487702
 GameObject:

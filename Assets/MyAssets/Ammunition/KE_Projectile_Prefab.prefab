@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3540025845609826665}
   - component: {fileID: 276076387632365056}
   - component: {fileID: 4346379748194075015}
-  - component: {fileID: 3413997317137873204}
   - component: {fileID: -7551579270617477802}
   m_Layer: 8
   m_Name: KE_Projectile_Prefab
@@ -28,6 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1799824853429180391}
+  serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -889, y: 30.378, z: 55.036}
   m_LocalScale: {x: 0.05, y: 0.5, z: 0.05}
@@ -35,7 +35,6 @@ Transform:
   m_Children:
   - {fileID: 5932769208194245431}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &3540025845609826665
 MeshFilter:
@@ -62,6 +61,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -83,9 +87,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &4346379748194075015
 CapsuleCollider:
@@ -110,33 +116,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &3413997317137873204
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1799824853429180391}
-  serializedVersion: 4
-  m_Mass: 0.00001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 2
 --- !u!114 &-7551579270617477802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,12 +128,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebd8cd32bf20ef4a88aaeef633bc598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MuzzleVelocity: 1200
+  Mass: 7
+  AirDrag: 0.001
+  groundTag: Ground
+  enemyTag: Enemy
   KE_Impact_Effect_Ground: {fileID: 1469856625574039601, guid: e97ec04a3f2743242beba3841aab53c3,
     type: 3}
+  KE_Impact_Effect_Armor: {fileID: 1469856625574039601, guid: e97ec04a3f2743242beba3841aab53c3,
+    type: 3}
+  MZ_Impact_Effect_Ground: {fileID: 0}
+  MZ_Impact_Effect_Armor: {fileID: 0}
   ammoType: 1
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1
+  gunner: {fileID: 0}
 --- !u!1 &4384676718065487702
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,13 +166,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4384676718065487702}
+  serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2709321336237209901}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &1505196097404561557
 MeshFilter:
@@ -213,6 +199,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -234,7 +225,9 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}

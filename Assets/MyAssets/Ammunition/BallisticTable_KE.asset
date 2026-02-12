@@ -1,0 +1,784 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 402937b172942e349bf691cfbe4c47de, type: 3}
+  m_Name: BallisticTable_KE
+  m_EditorClassIdentifier: Assembly-CSharp::BallisticTable
+  ballisticTable_Deg:
+  - range: 200
+    angle: 0.04005254
+  - range: 210
+    angle: 0.042420633
+  - range: 220
+    angle: 0.044790067
+  - range: 230
+    angle: 0.047160827
+  - range: 240
+    angle: 0.049532942
+  - range: 250
+    angle: 0.051906377
+  - range: 260
+    angle: 0.05428116
+  - range: 270
+    angle: 0.05428116
+  - range: 280
+    angle: 0.056657277
+  - range: 290
+    angle: 0.059034757
+  - range: 300
+    angle: 0.06141354
+  - range: 310
+    angle: 0.06379369
+  - range: 320
+    angle: 0.06617517
+  - range: 330
+    angle: 0.06855798
+  - range: 340
+    angle: 0.07094215
+  - range: 350
+    angle: 0.07094215
+  - range: 360
+    angle: 0.07332764
+  - range: 370
+    angle: 0.07571447
+  - range: 380
+    angle: 0.078102656
+  - range: 390
+    angle: 0.080492154
+  - range: 400
+    angle: 0.08288301
+  - range: 410
+    angle: 0.0852752
+  - range: 420
+    angle: 0.08766872
+  - range: 430
+    angle: 0.087890625
+  - range: 440
+    angle: 0.090063594
+  - range: 450
+    angle: 0.0924598
+  - range: 460
+    angle: 0.094857335
+  - range: 470
+    angle: 0.097256236
+  - range: 480
+    angle: 0.09965646
+  - range: 490
+    angle: 0.10205801
+  - range: 500
+    angle: 0.10446091
+  - range: 510
+    angle: 0.10686514
+  - range: 520
+    angle: 0.10927073
+  - range: 530
+    angle: 0.10927073
+  - range: 540
+    angle: 0.11167764
+  - range: 550
+    angle: 0.11408593
+  - range: 560
+    angle: 0.11649548
+  - range: 570
+    angle: 0.11890643
+  - range: 580
+    angle: 0.12131867
+  - range: 590
+    angle: 0.12373227
+  - range: 600
+    angle: 0.12614723
+  - range: 610
+    angle: 0.12856354
+  - range: 620
+    angle: 0.13098115
+  - range: 630
+    angle: 0.13183594
+  - range: 640
+    angle: 0.13340011
+  - range: 650
+    angle: 0.13582039
+  - range: 660
+    angle: 0.13824204
+  - range: 670
+    angle: 0.14066498
+  - range: 680
+    angle: 0.1430893
+  - range: 690
+    angle: 0.14551495
+  - range: 700
+    angle: 0.14794192
+  - range: 710
+    angle: 0.15037024
+  - range: 720
+    angle: 0.15279989
+  - range: 730
+    angle: 0.15523088
+  - range: 740
+    angle: 0.1576632
+  - range: 750
+    angle: 0.16009688
+  - range: 760
+    angle: 0.16009688
+  - range: 770
+    angle: 0.16253188
+  - range: 780
+    angle: 0.1649682
+  - range: 790
+    angle: 0.1674059
+  - range: 800
+    angle: 0.1698449
+  - range: 810
+    angle: 0.17228524
+  - range: 820
+    angle: 0.17472695
+  - range: 830
+    angle: 0.17716998
+  - range: 840
+    angle: 0.17961434
+  - range: 850
+    angle: 0.18206003
+  - range: 860
+    angle: 0.18450707
+  - range: 870
+    angle: 0.18695545
+  - range: 880
+    angle: 0.18940513
+  - range: 890
+    angle: 0.1918562
+  - range: 900
+    angle: 0.19430856
+  - range: 910
+    angle: 0.19676228
+  - range: 920
+    angle: 0.1977539
+  - range: 930
+    angle: 0.19921735
+  - range: 940
+    angle: 0.20167375
+  - range: 950
+    angle: 0.20413145
+  - range: 960
+    angle: 0.2065905
+  - range: 970
+    angle: 0.2090509
+  - range: 980
+    angle: 0.2115126
+  - range: 990
+    angle: 0.21397565
+  - range: 1000
+    angle: 0.21644011
+  - range: 1010
+    angle: 0.21890585
+  - range: 1020
+    angle: 0.22137287
+  - range: 1030
+    angle: 0.22384131
+  - range: 1040
+    angle: 0.22631104
+  - range: 1050
+    angle: 0.22878209
+  - range: 1060
+    angle: 0.2312545
+  - range: 1070
+    angle: 0.23372824
+  - range: 1080
+    angle: 0.23620334
+  - range: 1090
+    angle: 0.2386798
+  - range: 1100
+    angle: 0.24115746
+  - range: 1110
+    angle: 0.24363655
+  - range: 1120
+    angle: 0.24611701
+  - range: 1130
+    angle: 0.24859872
+  - range: 1140
+    angle: 0.25108176
+  - range: 1150
+    angle: 0.2535662
+  - range: 1160
+    angle: 0.2560519
+  - range: 1170
+    angle: 0.25853908
+  - range: 1180
+    angle: 0.2610274
+  - range: 1190
+    angle: 0.2635172
+  - range: 1200
+    angle: 0.26600832
+  - range: 1210
+    angle: 0.2685007
+  - range: 1220
+    angle: 0.27099442
+  - range: 1230
+    angle: 0.27348953
+  - range: 1240
+    angle: 0.2759859
+  - range: 1250
+    angle: 0.2784837
+  - range: 1260
+    angle: 0.2809828
+  - range: 1270
+    angle: 0.28348315
+  - range: 1280
+    angle: 0.28598487
+  - range: 1290
+    angle: 0.28848803
+  - range: 1300
+    angle: 0.29099238
+  - range: 1310
+    angle: 0.2934981
+  - range: 1320
+    angle: 0.2960052
+  - range: 1330
+    angle: 0.29851365
+  - range: 1340
+    angle: 0.30102336
+  - range: 1350
+    angle: 0.30353433
+  - range: 1360
+    angle: 0.30604684
+  - range: 1370
+    angle: 0.3085606
+  - range: 1380
+    angle: 0.31107557
+  - range: 1390
+    angle: 0.31359196
+  - range: 1400
+    angle: 0.31610966
+  - range: 1410
+    angle: 0.31862873
+  - range: 1420
+    angle: 0.32114917
+  - range: 1430
+    angle: 0.32367092
+  - range: 1440
+    angle: 0.32619387
+  - range: 1450
+    angle: 0.3287183
+  - range: 1460
+    angle: 0.33124393
+  - range: 1470
+    angle: 0.33377105
+  - range: 1480
+    angle: 0.33629936
+  - range: 1490
+    angle: 0.33882898
+  - range: 1500
+    angle: 0.3413601
+  - range: 1510
+    angle: 0.34389246
+  - range: 1520
+    angle: 0.34642613
+  - range: 1530
+    angle: 0.3489611
+  - range: 1540
+    angle: 0.35149753
+  - range: 1550
+    angle: 0.35403508
+  - range: 1560
+    angle: 0.35657412
+  - range: 1570
+    angle: 0.35911447
+  - range: 1580
+    angle: 0.36165613
+  - range: 1590
+    angle: 0.3641991
+  - range: 1600
+    angle: 0.3667434
+  - range: 1610
+    angle: 0.37109375
+  - range: 1620
+    angle: 0.37438434
+  - range: 1630
+    angle: 0.37693387
+  - range: 1640
+    angle: 0.3794849
+  - range: 1650
+    angle: 0.38203722
+  - range: 1660
+    angle: 0.3845908
+  - range: 1670
+    angle: 0.3871457
+  - range: 1680
+    angle: 0.38970196
+  - range: 1690
+    angle: 0.3922596
+  - range: 1700
+    angle: 0.39481843
+  - range: 1710
+    angle: 0.39737874
+  - range: 1720
+    angle: 0.3999405
+  - range: 1730
+    angle: 0.40250325
+  - range: 1740
+    angle: 0.40506744
+  - range: 1750
+    angle: 0.407633
+  - range: 1760
+    angle: 0.41019994
+  - range: 1770
+    angle: 0.41503906
+  - range: 1780
+    angle: 0.4179086
+  - range: 1790
+    angle: 0.42048067
+  - range: 1800
+    angle: 0.4230541
+  - range: 1810
+    angle: 0.42562896
+  - range: 1820
+    angle: 0.4282052
+  - range: 1830
+    angle: 0.43078268
+  - range: 1840
+    angle: 0.43336147
+  - range: 1850
+    angle: 0.43594152
+  - range: 1860
+    angle: 0.438523
+  - range: 1870
+    angle: 0.44110578
+  - range: 1880
+    angle: 0.44368988
+  - range: 1890
+    angle: 0.44677734
+  - range: 1900
+    angle: 0.45145005
+  - range: 1910
+    angle: 0.45403963
+  - range: 1920
+    angle: 0.4566303
+  - range: 1930
+    angle: 0.45922244
+  - range: 1940
+    angle: 0.46181583
+  - range: 1950
+    angle: 0.46441054
+  - range: 1960
+    angle: 0.4670065
+  - range: 1970
+    angle: 0.4696039
+  - range: 1980
+    angle: 0.47220254
+  - range: 1990
+    angle: 0.47607422
+  - range: 2000
+    angle: 0.4800064
+  - range: 2010
+    angle: 0.48261034
+  - range: 2020
+    angle: 0.48521566
+  - range: 2030
+    angle: 0.48782235
+  - range: 2040
+    angle: 0.49043006
+  - range: 2050
+    angle: 0.49303937
+  - range: 2060
+    angle: 0.49565005
+  - range: 2070
+    angle: 0.49826205
+  - range: 2080
+    angle: 0.5034895
+  - range: 2090
+    angle: 0.5061054
+  - range: 2100
+    angle: 0.50872266
+  - range: 2110
+    angle: 0.511341
+  - range: 2120
+    angle: 0.51396096
+  - range: 2130
+    angle: 0.51658213
+  - range: 2140
+    angle: 0.5192044
+  - range: 2150
+    angle: 0.5218283
+  - range: 2160
+    angle: 0.5270798
+  - range: 2170
+    angle: 0.52970743
+  - range: 2180
+    angle: 0.5323366
+  - range: 2190
+    angle: 0.53496706
+  - range: 2200
+    angle: 0.5375987
+  - range: 2210
+    angle: 0.5402317
+  - range: 2220
+    angle: 0.542866
+  - range: 2230
+    angle: 0.5481386
+  - range: 2240
+    angle: 0.55077696
+  - range: 2250
+    angle: 0.5534166
+  - range: 2260
+    angle: 0.55605745
+  - range: 2270
+    angle: 0.55869985
+  - range: 2280
+    angle: 0.56134343
+  - range: 2290
+    angle: 0.56640625
+  - range: 2300
+    angle: 0.56928205
+  - range: 2310
+    angle: 0.5719309
+  - range: 2320
+    angle: 0.5745809
+  - range: 2330
+    angle: 0.57723236
+  - range: 2340
+    angle: 0.5798851
+  - range: 2350
+    angle: 0.5834961
+  - range: 2360
+    angle: 0.5878514
+  - range: 2370
+    angle: 0.5905093
+  - range: 2380
+    angle: 0.59316885
+  - range: 2390
+    angle: 0.5958295
+  - range: 2400
+    angle: 0.59849155
+  - range: 2410
+    angle: 0.60302734
+  - range: 2420
+    angle: 0.6064855
+  - range: 2430
+    angle: 0.6091527
+  - range: 2440
+    angle: 0.6118213
+  - range: 2450
+    angle: 0.614491
+  - range: 2460
+    angle: 0.6171622
+  - range: 2470
+    angle: 0.62250876
+  - range: 2480
+    angle: 0.6251838
+  - range: 2490
+    angle: 0.6278602
+  - range: 2500
+    angle: 0.6305381
+  - range: 2510
+    angle: 0.6332171
+  - range: 2520
+    angle: 0.63857925
+  - range: 2530
+    angle: 0.6412622
+  - range: 2540
+    angle: 0.6439469
+  - range: 2550
+    angle: 0.6466322
+  - range: 2560
+    angle: 0.6493192
+  - range: 2570
+    angle: 0.65469706
+  - range: 2580
+    angle: 0.65738785
+  - range: 2590
+    angle: 0.6600803
+  - range: 2600
+    angle: 0.66277397
+  - range: 2610
+    angle: 0.66546845
+  - range: 2620
+    angle: 0.6708622
+  - range: 2630
+    angle: 0.67356086
+  - range: 2640
+    angle: 0.67626107
+  - range: 2650
+    angle: 0.67896235
+  - range: 2660
+    angle: 0.68359375
+  - range: 2670
+    angle: 0.68707466
+  - range: 2680
+    angle: 0.6897813
+  - range: 2690
+    angle: 0.69248927
+  - range: 2700
+    angle: 0.6951984
+  - range: 2710
+    angle: 0.70062065
+  - range: 2720
+    angle: 0.70333385
+  - range: 2730
+    angle: 0.7060485
+  - range: 2740
+    angle: 0.7087642
+  - range: 2750
+    angle: 0.7141998
+  - range: 2760
+    angle: 0.71691954
+  - range: 2770
+    angle: 0.7196406
+  - range: 2780
+    angle: 0.722363
+  - range: 2790
+    angle: 0.72753906
+  - range: 2800
+    angle: 0.730538
+  - range: 2810
+    angle: 0.7332655
+  - range: 2820
+    angle: 0.7359942
+  - range: 2830
+    angle: 0.7397461
+  - range: 2840
+    angle: 0.744189
+  - range: 2850
+    angle: 0.7469231
+  - range: 2860
+    angle: 0.74965847
+  - range: 2870
+    angle: 0.75439453
+  - range: 2880
+    angle: 0.7578727
+  - range: 2890
+    angle: 0.76061344
+  - range: 2900
+    angle: 0.7633555
+  - range: 2910
+    angle: 0.7688434
+  - range: 2920
+    angle: 0.77158904
+  - range: 2930
+    angle: 0.7743361
+  - range: 2940
+    angle: 0.77708447
+  - range: 2950
+    angle: 0.7825856
+  - range: 2960
+    angle: 0.7853379
+  - range: 2970
+    angle: 0.78809154
+  - range: 2980
+    angle: 0.7910156
+  - range: 2990
+    angle: 0.79636085
+  - range: 3000
+    angle: 0.7991195
+  - range: 3010
+    angle: 0.80187976
+  - range: 3020
+    angle: 0.8074044
+  - range: 3030
+    angle: 0.8101685
+  - range: 3040
+    angle: 0.8129339
+  - range: 3050
+    angle: 0.81570077
+  - range: 3060
+    angle: 0.8212377
+  - range: 3070
+    angle: 0.82400846
+  - range: 3080
+    angle: 0.8267803
+  - range: 3090
+    angle: 0.83232856
+  - range: 3100
+    angle: 0.8351041
+  - range: 3110
+    angle: 0.83788157
+  - range: 3120
+    angle: 0.8434398
+  - range: 3130
+    angle: 0.84622085
+  - range: 3140
+    angle: 0.84900355
+  - range: 3150
+    angle: 0.85178673
+  - range: 3160
+    angle: 0.8573582
+  - range: 3170
+    angle: 0.86014557
+  - range: 3180
+    angle: 0.8629346
+  - range: 3190
+    angle: 0.8685163
+  - range: 3200
+    angle: 0.87130904
+  - range: 3210
+    angle: 0.8741032
+  - range: 3220
+    angle: 0.87969494
+  - range: 3230
+    angle: 0.8824929
+  - range: 3240
+    angle: 0.8852923
+  - range: 3250
+    angle: 0.8908948
+  - range: 3260
+    angle: 0.8936976
+  - range: 3270
+    angle: 0.8965026
+  - range: 3280
+    angle: 0.9021152
+  - range: 3290
+    angle: 0.90492356
+  - range: 3300
+    angle: 0.9077333
+  - range: 3310
+    angle: 0.9133563
+  - range: 3320
+    angle: 0.9161699
+  - range: 3330
+    angle: 0.9189849
+  - range: 3340
+    angle: 0.92461836
+  - range: 3350
+    angle: 0.92743707
+  - range: 3360
+    angle: 0.9302572
+  - range: 3370
+    angle: 0.93590105
+  - range: 3380
+    angle: 0.938725
+  - range: 3390
+    angle: 0.9415504
+  - range: 3400
+    angle: 0.9472048
+  - range: 3410
+    angle: 0.9500339
+  - range: 3420
+    angle: 0.95458984
+  - range: 3430
+    angle: 0.9585289
+  - range: 3440
+    angle: 0.9613633
+  - range: 3450
+    angle: 0.9670352
+  - range: 3460
+    angle: 0.96987355
+  - range: 3470
+    angle: 0.97271323
+  - range: 3480
+    angle: 0.97839594
+  - range: 3490
+    angle: 0.9812398
+  - range: 3500
+    angle: 0.9840845
+  - range: 3510
+    angle: 0.9897766
+  - range: 3520
+    angle: 0.9926257
+  - range: 3530
+    angle: 0.9983263
+  - range: 3540
+    angle: 1.001179
+  - range: 3550
+    angle: 1.0040326
+  - range: 3560
+    angle: 1.0097439
+  - range: 3570
+    angle: 1.0126019
+  - range: 3580
+    angle: 1.015625
+  - range: 3590
+    angle: 1.0211818
+  - range: 3600
+    angle: 1.0240445
+  - range: 3610
+    angle: 1.0297735
+  - range: 3620
+    angle: 1.0326405
+  - range: 3630
+    angle: 1.0375977
+  - range: 3640
+    angle: 1.0412481
+  - range: 3650
+    angle: 1.0441196
+  - range: 3660
+    angle: 1.0498674
+  - range: 3670
+    angle: 1.0527427
+  - range: 3680
+    angle: 1.0584974
+  - range: 3690
+    angle: 1.0613775
+  - range: 3700
+    angle: 1.0642579
+  - range: 3710
+    angle: 1.0700238
+  - range: 3720
+    angle: 1.0729082
+  - range: 3730
+    angle: 1.0786817
+  - range: 3740
+    angle: 1.0815701
+  - range: 3750
+    angle: 1.0864258
+  - range: 3760
+    angle: 1.0902429
+  - range: 3770
+    angle: 1.0931368
+  - range: 3780
+    angle: 1.098928
+  - range: 3790
+    angle: 1.1018255
+  - range: 3800
+    angle: 1.107624
+  - range: 3810
+    angle: 1.1105254
+  - range: 3820
+    angle: 1.1163323
+  - range: 3830
+    angle: 1.1192377
+  - range: 3840
+    angle: 1.1221442
+  - range: 3850
+    angle: 1.1279609
+  - range: 3860
+    angle: 1.1308706
+  - range: 3870
+    angle: 1.1366961
+  - range: 3880
+    angle: 1.1396103
+  - range: 3890
+    angle: 1.1454422
+  - range: 3900
+    angle: 1.1483607
+  - range: 3910
+    angle: 1.1542003
+  - range: 3920
+    angle: 1.1571224
+  - range: 3930
+    angle: 1.1621094
+  - range: 3940
+    angle: 1.1658959
+  - range: 3950
+    angle: 1.1688225
+  - range: 3960
+    angle: 1.1746807
+  - range: 3970
+    angle: 1.1776116
+  - range: 3980
+    angle: 1.1834769
+  - range: 3990
+    angle: 1.1864121
+  - range: 4000
+    angle: 1.1922855
+  projectile: {fileID: -7551579270617477802, guid: c43a007bfa940df408aa00ce04f0611b,
+    type: 3}
+  minRange: 200
+  maxRange: 4000
+  rangeStep: 10
+  maxTime: 8
+  timeStep: 0.01

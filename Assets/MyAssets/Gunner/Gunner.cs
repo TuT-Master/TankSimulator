@@ -15,11 +15,8 @@ public class Gunner : MonoBehaviour
     [SerializeField] private float gunTraverseSpeed_Y = 30f;
     [SerializeField] private float gunTraverseSpeed_X_Manual = 3f;
     [SerializeField] private float gunTraverseSpeed_Y_Manual = 3f;
-    [SerializeField] private float stabYawSnapEps = 0.05f;    // deg
-    [SerializeField] private float stabPitchSnapEps = 0.05f;  // deg
     public bool isManualTraversing = false;
     private float yawZero;
-    private bool yawZeroInit = false;
     private float currentElevation = 0f;
     private float currentAzimuth = 0f;
 
@@ -47,9 +44,9 @@ public class Gunner : MonoBehaviour
     [SerializeField] private GameObject KE_shot_prefab;
     [SerializeField] private GameObject MZ_shot_prefab;
     [SerializeField] private GameObject HE_shot_prefab;
-    [Tooltip("Muzzle velocity in m/s (KE, MZ, HE)")]
-    [SerializeField] private float[] projectileMuzzleVelocities = new float[3];
-    private Dictionary<Loader.AmmoType, float> projectileMuzzleVelocityDict;
+    [SerializeField] private BallisticTable KE_BallisticTable;
+    [SerializeField] private BallisticTable MZ_BallisticTable;
+    [SerializeField] private BallisticTable HE_BallisticTable;
 
     [Header("Camera Settings")]
     [SerializeField] private Camera gunner_mainCamera;
@@ -90,10 +87,12 @@ public class Gunner : MonoBehaviour
 
     // FCS variables
     [HideInInspector] public readonly float maxFCSCalculationRange = 4000f;
+    private float additiveAzimuth = 0f;
+    private float additiveElevation = 0f;
     private readonly float minFCSCalculationRange = 200f;
     private readonly float maxLaserRange = 9999f;
     private readonly float minLaserRange = 200f;
-    private float lastLaserRangedValue = 200f;
+    [SerializeField] private float lastLaserRangedValue = 200f;
 
     // Private variables
     private Coroutine yRoutine;
@@ -115,17 +114,9 @@ public class Gunner : MonoBehaviour
         if (!canonFire_Event.isValid())
             canonFire_Event = RuntimeManager.CreateInstance(canonFire_sound);
 
-        // Prepare projectile muzzle velocity dictionary
-        projectileMuzzleVelocityDict = new()
-        {
-            { Loader.AmmoType.KE, projectileMuzzleVelocities[0] },
-            { Loader.AmmoType.MZ, projectileMuzzleVelocities[1] },
-            { Loader.AmmoType.HE, projectileMuzzleVelocities[2] },
-        };
-
+        // Init stabilizer
         yawZero = NormalizeAngle(turretPivot.localEulerAngles.y);
         currentAzimuth = yawZero;
-        yawZeroInit = true;
 
         currentAzimuth = NormalizeAngle(turretPivot.localEulerAngles.y);
         currentElevation = NormalizeAngle(gunPivot.localEulerAngles.x);
@@ -168,7 +159,6 @@ public class Gunner : MonoBehaviour
                     // Assign new target
                     Enemy enemy = partOfEnemy.enemy;
                     currentTarget = enemy;
-                    lastLaserRangedValue = Vector3.Distance(transform.position, enemy.transform.position);
                     // Target facing direction
                     TargetFacingDirection targetDir = GetTargetFacingDirection(gunner_mainCamera.transform, enemy);
                     StartCoroutine(voiceManager.PlayContactReport(targetDir, enemy.targetType, currentAzimuth, lastLaserRangedValue));
@@ -195,6 +185,10 @@ public class Gunner : MonoBehaviour
         {
             StartCoroutine(Fire_MainCannon());
             commander.SetLastCommandText($"Fire with main gun");
+        }
+        else if (Input.GetKeyDown(KeyCode.N))
+        {
+            UseLaserRangefinder();
         }
     }
 
@@ -239,7 +233,7 @@ public class Gunner : MonoBehaviour
 
         float yawError = Vector3.SignedAngle(turretFwdOnPlane, targetOnPlaneYaw, yawAxis);
 
-        float desiredYaw = currentAzimuth + yawError;
+        float desiredYaw = currentAzimuth + yawError + additiveAzimuth;
 
         currentAzimuth = Mathf.MoveTowardsAngle(currentAzimuth, desiredYaw, gunTraverseSpeed_X * Time.deltaTime);
 
@@ -271,7 +265,7 @@ public class Gunner : MonoBehaviour
 
         float pitchError = Vector3.SignedAngle(gunFwdOnPlane, targetOnPlanePitch, pitchAxis);
 
-        float desiredPitch = currentElevation + pitchError;
+        float desiredPitch = currentElevation + pitchError + additiveElevation;
 
         // Clamp desired pitch in normalized range (matches your limits meaningfully)
         if (useElevationLimits)
@@ -322,8 +316,7 @@ public class Gunner : MonoBehaviour
         TraverseToAngle_X(targetAzimuth);
         TraverseToAngle_Y(targetElevation);
     }
-    // Traverse to target's pivot point (not as accurate)
-    public void TraverseToTarget(GameObject target)
+    public void TraverseToTarget(GameObject target) // Traverse to target's pivot point (not as accurate)
     {
         this.target = target.transform.position;
         StabilizerActive = true;
@@ -583,13 +576,13 @@ public class Gunner : MonoBehaviour
                         break;
                 }
 
-                if (shot.TryGetComponent(out Rigidbody rb))
+                if (shot.TryGetComponent(out Projectile p))
                 {
-                    rb.AddForce(canonMuzzlePoint.forward * projectileMuzzleVelocityDict[loader.currentAmmoTypeLoaded], ForceMode.VelocityChange);
+                    // Add force
+                    p.Launch(canonMuzzlePoint.forward);
 
                     // Assign Gunner variable for reverse confirmation of hit
-                    if (shot.TryGetComponent(out Projectile p))
-                        p.gunner = this;
+                    p.gunner = this;
 
                     // Visual and sound effect
                     SpawnEffect(Effect.CanonFire);
@@ -611,6 +604,80 @@ public class Gunner : MonoBehaviour
             }
         }
     }
+    private void UseLaserRangefinder(float setValue = 0f)
+    {
+        if(setValue >= 200f)
+        {
+            lastLaserRangedValue = setValue;
+        }
+        else
+        {
+            Ray ray = new(gunner_mainCamera.transform.position, gunner_mainCamera.transform.forward);
+            if (Physics.Raycast(ray, out RaycastHit hit, maxLaserRange))
+            {
+                if (hit.distance <= minLaserRange)
+                    lastLaserRangedValue = minLaserRange;
+                else if (hit.distance >= maxLaserRange)
+                    lastLaserRangedValue = maxLaserRange;
+                else
+                    lastLaserRangedValue = hit.distance;
+            }
+        }
+
+        SetAdditiveElevationForGun();
+    }
+    private void SetAdditiveElevationForGun()
+    {
+        BallisticTable table = null;
+        switch(loader.currentAmmoTypeLoaded)
+        {
+            case Loader.AmmoType.KE:
+                table = KE_BallisticTable;
+                break;
+            case Loader.AmmoType.MZ:
+                table = MZ_BallisticTable;
+                break;
+            case Loader.AmmoType.HE:
+                table = HE_BallisticTable;
+                break;
+        }
+
+        additiveElevation = -GetAngleForRange(table, lastLaserRangedValue);
+    }
+    private float GetAngleForRange(BallisticTable table, float distance)
+    {
+        var list = table.ballisticTable_Deg;
+
+        if (list == null || list.Count == 0)
+            return 0f;
+
+        // Clamp if outside table
+        if (distance <= list[0].range)
+            return list[0].angle;
+
+        if (distance >= list[^1].range)
+            return list[^1].angle;
+
+        // Find bracketing entries
+        for (int i = 0; i < list.Count - 1; i++)
+        {
+            if (distance >= list[i].range && distance <= list[i + 1].range)
+            {
+                float lowerRange = list[i].range;
+                float upperRange = list[i + 1].range;
+
+                float lowerAngle = list[i].angle;
+                float upperAngle = list[i + 1].angle;
+
+                float t = (distance - lowerRange) / (upperRange - lowerRange);
+
+                return Mathf.Lerp(lowerAngle, upperAngle, t);
+            }
+        }
+
+        return 0f;
+    }
+
 
 
     // ----- EFFECTS -----

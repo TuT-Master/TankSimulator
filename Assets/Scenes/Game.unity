@@ -2813,6 +2813,18 @@ PrefabInstance:
       propertyPath: armLength
       value: 0.0017360463
       objectReference: {fileID: 0}
+    - target: {fileID: 818647041779269743, guid: 51c5bbcb3bca3224488264545d82cc96,
+        type: 3}
+      propertyPath: KE_BallisticTable
+      value: 
+      objectReference: {fileID: 11400000, guid: fe3fd6d961befe8429225e9075b3b599,
+        type: 2}
+    - target: {fileID: 818647041779269743, guid: 51c5bbcb3bca3224488264545d82cc96,
+        type: 3}
+      propertyPath: MZ_BallisticTable
+      value: 
+      objectReference: {fileID: 11400000, guid: 3c8ff0ddc932b5943b8b4a92b484a270,
+        type: 2}
     - target: {fileID: 1425383767615394089, guid: 51c5bbcb3bca3224488264545d82cc96,
         type: 3}
       propertyPath: armLength
@@ -2953,6 +2965,16 @@ PrefabInstance:
       propertyPath: lastCommand_text
       value: 
       objectReference: {fileID: 2523841180690818583}
+    - target: {fileID: 6233711172287149054, guid: 51c5bbcb3bca3224488264545d82cc96,
+        type: 3}
+      propertyPath: camera_X_sensitivity
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233711172287149054, guid: 51c5bbcb3bca3224488264545d82cc96,
+        type: 3}
+      propertyPath: camera_Y_sensitivity
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6233711172287149054, guid: 51c5bbcb3bca3224488264545d82cc96,
         type: 3}
       propertyPath: commanderPeriscope_UI

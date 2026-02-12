@@ -86,10 +86,6 @@ public class Commander : MonoBehaviour
     public bool canInteract = true;
     private readonly float interactCooldown = 0.25f;
 
-    // Some variables
-    private Vector3 _lastPeriAimPoint;
-    private bool _hasLastPeriAimPoint;
-
 
 
     // ----- ON START -----
@@ -171,9 +167,6 @@ public class Commander : MonoBehaviour
 
         if (Physics.Raycast(origin, dir, out RaycastHit hit, 5000f, periHitMask))
         {
-            _lastPeriAimPoint = hit.point;
-            _hasLastPeriAimPoint = true;
-
             target = hit.collider.gameObject;
             if(target.CompareTag("Ground")) // If target is ground then it's not valid target
                 target = null;
